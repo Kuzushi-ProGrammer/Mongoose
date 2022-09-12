@@ -36,5 +36,9 @@ public class PlayerController : MonoBehaviour
         {
             walkVelocity = 2f;
         }
+        //if(hasGun)
+        //{
+        //if(imput.GetKeyDown(KeyCode.Space)
+        //
     }
 }
