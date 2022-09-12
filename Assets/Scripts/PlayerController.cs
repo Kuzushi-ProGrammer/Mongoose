@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rb;
     float walkVelocity = 1f;
-    Vector2 mousepos;
+    Vector3 mousepos;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
         // transform.LookAt(mousepos);
         // gameObject.transform.LookAt(mousepos);
         print(mousepos);
+
 
         if (Input.GetKey(KeyCode.W))
         {
@@ -38,13 +39,18 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x + walkVelocity, rb.velocity.y);
         }
-        if (Input.GetKey(KeyCode.RightShift))
+        if (Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.LeftShift))
         {
-            walkVelocity = 2f;
+            walkVelocity = 20f;
+        }
+        else
+        {
+            walkVelocity = 1f;
         }
         //if(hasGun)
         //{
         //if(imput.GetKeyDown(KeyCode.Space)
         //
     }
+
 }
