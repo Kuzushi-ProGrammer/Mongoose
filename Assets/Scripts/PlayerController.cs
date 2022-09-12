@@ -32,5 +32,9 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x + walkVelocity, rb.velocity.y);
         }
+        if (Input.GetKey(KeyCode.RightShift))
+        {
+            walkVelocity = 2f;
+        }
     }
 }
