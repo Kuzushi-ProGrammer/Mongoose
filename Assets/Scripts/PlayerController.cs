@@ -24,8 +24,14 @@ public class PlayerController : MonoBehaviour
         // playerPos = rb.position;
         // mousepos = Input.mousePosition;
 
-        Vector3 mousePos = Camera.main.WorldToScreenPoint(transform.position);
-        Vector2 playerDirection = mousePos - rb.transform.position;
+        Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = 0;
+        mousePos.x -= objectPos.x;
+        mousePos.y -= objectPos.y;
+
+
+        //Vector2 playerDirection = mousePos - rb.transform.position;
         float lookAngle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, lookAngle));
         
