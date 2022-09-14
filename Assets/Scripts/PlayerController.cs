@@ -7,7 +7,9 @@ public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rb;
     float walkVelocity = 1f;
-    Vector3 mousepos;
+    Vector3 mousePos;
+    Vector3 playerPos;
+    float lookAngle;
     float health = 3f;
 
     // Start is called before the first frame update
@@ -19,10 +21,16 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // playerPos = rb.position;
+        // mousepos = Input.mousePosition;
 
-        //mousepos = Input.mousePosition;
-        //rb.transform.LookAt(mousepos.x);
-       // print(mousepos);
+        Vector3 mousePos = Camera.main.WorldToScreenPoint(transform.position);
+        Vector2 playerDirection = mousePos - rb.transform.position;
+        float lookAngle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, lookAngle));
+        
+        print(mousePos);
+        print(lookAngle);
 
 
         if (Input.GetKey(KeyCode.W))
