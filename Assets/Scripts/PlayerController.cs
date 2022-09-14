@@ -20,9 +20,9 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-        mousepos = Input.mousePosition;
-        rb.transform.LookAt(mousepos.x);
-        print(mousepos);
+        //mousepos = Input.mousePosition;
+        //rb.transform.LookAt(mousepos.x);
+       // print(mousepos);
 
 
         if (Input.GetKey(KeyCode.W))
