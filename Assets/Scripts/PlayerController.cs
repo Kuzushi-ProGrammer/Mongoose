@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     float walkVelocity = 1f;
     Vector3 mousepos;
+    
+   // float mouseZ = 0f;
+   // GameObject playerObject;
 
     // Start is called before the first frame update
     void Start()
@@ -17,9 +20,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         mousepos = Input.mousePosition;
-        // transform.LookAt(mousepos);
-        // gameObject.transform.LookAt(mousepos);
+        rb.transform.LookAt(mousepos.x);
         print(mousepos);
 
 
