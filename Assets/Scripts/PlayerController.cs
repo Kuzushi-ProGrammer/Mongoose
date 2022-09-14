@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -7,9 +8,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     float walkVelocity = 1f;
     Vector3 mousepos;
-    
-   // float mouseZ = 0f;
-   // GameObject playerObject;
+    float health = 3f;
 
     // Start is called before the first frame update
     void Start()
@@ -50,10 +49,22 @@ public class PlayerController : MonoBehaviour
         {
             walkVelocity = 1f;
         }
-        //if(hasGun)
-        //{
-        //if(imput.GetKeyDown(KeyCode.Space)
-        //
+
+        //Health
+       void OnTriggerEnter2D(Collider2D collision)
+    {
+            health = health - 1;
+            Debug.Log("Sus -1 Health ");
+            if(health== 0)
+            {
+                Destroy(gameObject);
+                Debug.Log("I have fallen and can't get up");
+            }
     }
+    //if(hasGun)
+    //{
+    //if(imput.GetKeyDown(KeyCode.Space)
+    //
+}
 
 }
