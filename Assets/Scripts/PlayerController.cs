@@ -7,10 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rb;
     float walkVelocity = 1f;
-    Vector3 mousePos;
-    Vector3 playerPos;
-    float lookAngle;
     float health = 3f;
+    public Vector2 playerPos;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +19,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // playerPos = rb.position;
+        playerPos = rb.position;
         // mousepos = Input.mousePosition;
 
         Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
@@ -34,26 +32,31 @@ public class PlayerController : MonoBehaviour
         //Vector2 playerDirection = mousePos - rb.transform.position;
         float lookAngle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, lookAngle));
-        
-        print(mousePos);
-        print(lookAngle);
+
+        //print(mousePos);
+        //print(lookAngle);
+        print(playerPos + "PLAYER");
 
 
         if (Input.GetKey(KeyCode.W))
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + walkVelocity);
+            
         }
         if (Input.GetKey(KeyCode.A))
         {
             rb.velocity = new Vector2(rb.velocity.x - walkVelocity, rb.velocity.y);
+
         }
         if (Input.GetKey(KeyCode.S))
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y - walkVelocity);
+
         }
         if (Input.GetKey(KeyCode.D))
         {
             rb.velocity = new Vector2(rb.velocity.x + walkVelocity, rb.velocity.y);
+
         }
         if (Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.LeftShift))
         {
@@ -62,6 +65,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             walkVelocity = 1f;
+
         }
 
         //Health
