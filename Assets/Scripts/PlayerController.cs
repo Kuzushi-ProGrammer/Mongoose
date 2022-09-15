@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.LeftShift))
         {
-            walkVelocity = 20f;
+            walkVelocity = 2f;
         }
         else
         {
