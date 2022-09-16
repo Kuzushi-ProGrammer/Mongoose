@@ -14,9 +14,9 @@ public class PlayerController : MonoBehaviour
     //Gun stuff
     bool hasGun = true;
     public GameObject bulletPrefab;
-    public Transform[] bulletSpawnPoints;
+    public Transform bulletSpawnPoint;
     public Sprite[] bullet;
-    float bulletSpeed = 30;
+    float bulletSpeed = 30f;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +44,6 @@ public class PlayerController : MonoBehaviour
         //print(mousePos);
         //print(lookAngle);
         print(playerPos + "PLAYER");
-
 
         if (Input.GetKey(KeyCode.W))
         {
@@ -98,6 +97,8 @@ public class PlayerController : MonoBehaviour
     }
     void GunGoBoom()
     {
-        //GameObject newbullet = Instantiate(bulletPrefab, bulletSpawnPoints[(int)playerDirection, false]);
+        GameObject newbullet = Instantiate(bulletPrefab, bulletSpawnPoint.gameObject.transform. position, transform.rotation);
+        Rigidbody2D bulletRB = newbullet.GetComponent<Rigidbody2D>();
+        bulletRB.velocity = new Vector2(bulletSpeed,bulletSpeed);
     }
 }
