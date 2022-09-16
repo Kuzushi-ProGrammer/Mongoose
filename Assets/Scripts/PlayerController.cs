@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+
+
+
 using UnityEngine;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,6 +10,13 @@ public class PlayerController : MonoBehaviour
     float walkVelocity = 1f;
     float health = 3f;
     // public Vector2 playerPos;
+
+    //Gun stuff
+    bool hasGun = true;
+    public GameObject bulletPrefab;
+    public Transform[] bulletSpawnPoints;
+    public Sprite[] bullet;
+    float bulletSpeed = 30;
 
     // Start is called before the first frame update
     void Start()
@@ -66,21 +74,28 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        //Health
-       void OnTriggerEnter2D(Collider2D collision)
-    {
-            health = health - 1;
-            Debug.Log("Sus -1 Health ");
-            if(health== 0)
-            {
-                Destroy(gameObject);
-                Debug.Log("I have fallen and can't get up");
-            }
-    }
-    //if(hasGun)
-    //{
-    //if(imput.GetKeyDown(KeyCode.Space)
-    //
-}
 
+        if (hasGun)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                GunGoBoom();
+            }
+        }
+    }
+    //Health
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        health = health - 1;
+        Debug.Log("Sus -1 Health ");
+        if (health == 0)
+        {
+            Destroy(gameObject);
+            Debug.Log("I have fallen and can't get up");
+        }
+    }
+    void GunGoBoom()
+    {
+        //GameObject newbullet = Instantiate(bulletPrefab, bulletSpawnPoints[(int)playerDirection, false]);
+    }
 }
