@@ -3,26 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
-{
-    public Transform playerObject;
-    private Vector2 playerPos;
-    private Vector2 cameraPos;
+{ 
+        public GameObject player;
+        public float cameraHeight = 20.0f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        playerObject = GetComponent<Transform>();
-        playerPos = playerObject.position;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        cameraPos = playerPos;
-        print(cameraPos + "CAM");
-
-
-
-
-    }
+        void Update()
+        {
+            Vector3 pos = player.transform.position;
+            pos.z += cameraHeight;
+            transform.position = pos;
+        }
+    
 }

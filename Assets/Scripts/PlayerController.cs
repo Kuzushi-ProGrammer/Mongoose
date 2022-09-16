@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     float walkVelocity = 1f;
     float health = 3f;
-    public Vector2 playerPos;
+    // public Vector2 playerPos;
 
     //Gun stuff
     bool hasGun = true;
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerPos = rb.position;
+        // playerPos = rb.position;
         // mousepos = Input.mousePosition;
 
         Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
@@ -41,9 +41,7 @@ public class PlayerController : MonoBehaviour
         float lookAngle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, lookAngle));
 
-        //print(mousePos);
-        //print(lookAngle);
-        print(playerPos + "PLAYER");
+        // print(playerPos + "PLAYER");
 
         if (Input.GetKey(KeyCode.W))
         {
