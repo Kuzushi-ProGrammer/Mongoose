@@ -40,13 +40,17 @@ public class PlayerController : MonoBehaviour
         //Vector2 playerDirection = mousePos - rb.transform.position;
         float lookAngle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, lookAngle));
-
         // print(playerPos + "PLAYER");
+
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            
+        }
 
         if (Input.GetKey(KeyCode.W))
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + walkVelocity);
-            
+
         }
         if (Input.GetKey(KeyCode.A))
         {
@@ -67,6 +71,10 @@ public class PlayerController : MonoBehaviour
         {
             walkVelocity = 2f;
         }
+        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.LeftShift))
+        {
+            walkVelocity = 0.5f;
+        }
         else
         {
             walkVelocity = 1f;
@@ -76,7 +84,7 @@ public class PlayerController : MonoBehaviour
 
         if (hasGun)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space))
             {
                 GunGoBoom();
             }
@@ -93,10 +101,12 @@ public class PlayerController : MonoBehaviour
             Debug.Log("I have fallen and can't get up");
         }
     }
+
     void GunGoBoom()
     {
         GameObject newbullet = Instantiate(bulletPrefab, bulletSpawnPoint.gameObject.transform. position, transform.rotation);
         Rigidbody2D bulletRB = newbullet.GetComponent<Rigidbody2D>();
-        bulletRB.velocity = new Vector2(bulletSpeed,bulletSpeed);
+        //newbullet.GetComponent<bulletSpwanPoint>().SetVelocity(transform.up * bulletSpeed);
+        bulletRB.velocity = new Vector2(0f, bulletSpeed);
     }
 }
