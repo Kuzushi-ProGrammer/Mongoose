@@ -12,8 +12,13 @@ public class NetworkedPlayerController : NetworkBehaviour
             float moveHorizontal = Input.GetAxis("Horizontal");
             float moveVertical = Input.GetAxis("Vertical");
 
-            Vector3 movement = new Vector3(moveHorizontal, moveVertical, 0);
+            Vector3 movement = new Vector3(moveHorizontal * 0.1f, moveVertical * 0.1f, 0);
             transform.position = transform.position + movement;
         }
+    }
+
+    void Update()
+    {
+        HandleMovement();
     }
 }
