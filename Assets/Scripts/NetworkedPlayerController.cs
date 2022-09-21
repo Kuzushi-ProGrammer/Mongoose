@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class NetworkedPlayerController : NetworkBehaviour
 {
+    public Color playerColor;
+    SpriteRenderer spriteRenderer;
+
     void HandleMovement()
     {
         if (isLocalPlayer)
@@ -17,8 +20,22 @@ public class NetworkedPlayerController : NetworkBehaviour
         }
     }
 
+    private void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
     void Update()
     {
+        spriteRenderer.color = playerColor;
+
         HandleMovement();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            playerColor = Color.yellow;
+
+        }
+;
     }
 }
