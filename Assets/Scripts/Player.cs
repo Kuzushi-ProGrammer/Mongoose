@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NetworkedPlayerController : NetworkBehaviour
+public class Player : NetworkBehaviour
 {
     public Color playerColor;
     SpriteRenderer spriteRenderer;
@@ -31,11 +31,18 @@ public class NetworkedPlayerController : NetworkBehaviour
 
         HandleMovement();
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (isLocalPlayer && Input.GetKeyDown(KeyCode.Space))
         {
-            playerColor = Color.yellow;
-
+            CommandTest();
         }
-;
+
+
+    }
+
+    [Command]
+    void CommandTest()
+    {
+        Debug.Log("Command recieved");
+        playerColor = Color.yellow;
     }
 }

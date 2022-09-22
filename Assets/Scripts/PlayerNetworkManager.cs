@@ -30,7 +30,7 @@ public class PlayerNetworkManager : NetworkManager
     {
         GameObject playerObject = Instantiate(playerPrefab);
 
-        NetworkedPlayerController player = playerObject.GetComponent<NetworkedPlayerController>();
+        Player player = playerObject.GetComponent<Player>();
 
         player.playerColor = message.playerColor;
 
