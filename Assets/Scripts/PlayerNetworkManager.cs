@@ -16,12 +16,13 @@ public class PlayerNetworkManager : NetworkManager
     public override void OnClientConnect()
     {
         base.OnClientConnect();
+
         CharacterMessage characterMessage = new CharacterMessage
         {
             playerColor = Color.green
         };
 
-        NetworkClient.Send(characterMessage);
+        NetworkClient.Send(characterMessage); // Changes the state of the cube when it connects to the server, only server side
 
         Debug.Log("Client Connected");
     }

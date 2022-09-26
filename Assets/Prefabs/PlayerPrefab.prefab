@@ -120,7 +120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  playerColor: {r: 1, g: 0, b: 0.019001007, a: 1}
+  playerColor: {r: 0, g: 0.0816164, b: 1, a: 1}
 --- !u!50 &5825789330060076290
 Rigidbody2D:
   serializedVersion: 4
