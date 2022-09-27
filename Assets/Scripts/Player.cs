@@ -12,6 +12,9 @@ public class Player : NetworkBehaviour
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
 
+    ProjectileNetwork projectileNw;
+    GameObject projectileprefab;
+
     void HandleMovement()
     {
         if (isLocalPlayer)
@@ -27,6 +30,7 @@ public class Player : NetworkBehaviour
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        projectileNw = GetComponent<ProjectileNetwork>();
     }
 
     void Update()
@@ -41,6 +45,12 @@ public class Player : NetworkBehaviour
             {
                 CommandTest();
             }
+
+            if (Input.GetKeyDown(KeyCode.Backspace))
+            {
+                projectileNw.SpawnProjectile();
+                // SpawnProjectile();
+            }
         }
 
         if (isServer && Input.GetKeyDown(KeyCode.M))
@@ -48,6 +58,11 @@ public class Player : NetworkBehaviour
             RpcTest();
         }
 
+    }
+    public void SpawnProjectile()
+    {
+        GameObject projobj = Instantiate(projectileprefab, new Vector3(1, 0, 0), Quaternion.identity);
+        NetworkServer.Spawn(projobj);
     }
 
     //Rpc stands for Remote Procedure Call
