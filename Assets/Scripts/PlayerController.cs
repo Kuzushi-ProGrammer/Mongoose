@@ -1,6 +1,7 @@
 
 
 
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 
 
@@ -9,18 +10,21 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     float walkVelocity = 1f;
     float health = 3f;
-    // public Vector2 playerPos;
-
+    public Vector2 playerPos;
+   // public GameObject playerPrefab;
+  //  public GameObject playerspawnpoint;
+  //  GameObject newPlayer;
     //Gun stuff
     bool hasGun = true;
     public GameObject bulletPrefab;
     public Transform bulletSpawnPoint;
     public Sprite[] bullet;
-    float bulletSpeed = 30f;
+    float bulletSpeed = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
+       // newPlayer = Instantiate(playerPrefab, playerspawnpoint.transform, false);
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -28,7 +32,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // playerPos = rb.position;
-        // mousepos = Input.mousePosition;
+       //  mousepos = Input.mousePosition;
 
         Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
         Vector3 mousePos = Input.mousePosition;
@@ -84,7 +88,7 @@ public class PlayerController : MonoBehaviour
 
         if (hasGun)
         {
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 GunGoBoom();
             }
