@@ -1,6 +1,7 @@
 
 
 
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 
 
@@ -9,18 +10,21 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     float walkVelocity = 1f;
     float health = 3f;
-    // public Vector2 playerPos;
-
+    public Vector2 playerPos;
+   // public GameObject playerPrefab;
+  //  public GameObject playerspawnpoint;
+  //  GameObject newPlayer;
     //Gun stuff
     bool hasGun = true;
     public GameObject bulletPrefab;
     public Transform bulletSpawnPoint;
     public Sprite[] bullet;
-    float bulletSpeed = 30f;
+    float bulletSpeed = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
+       // newPlayer = Instantiate(playerPrefab, playerspawnpoint.transform, false);
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -28,7 +32,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // playerPos = rb.position;
-        // mousepos = Input.mousePosition;
+       //  mousepos = Input.mousePosition;
 
         Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
         Vector3 mousePos = Input.mousePosition;
@@ -40,13 +44,17 @@ public class PlayerController : MonoBehaviour
         //Vector2 playerDirection = mousePos - rb.transform.position;
         float lookAngle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, lookAngle));
-
         // print(playerPos + "PLAYER");
+
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            
+        }
 
         if (Input.GetKey(KeyCode.W))
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + walkVelocity);
-            
+
         }
         if (Input.GetKey(KeyCode.A))
         {
@@ -66,6 +74,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.LeftShift))
         {
             walkVelocity = 2f;
+        }
+        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.LeftShift))
+        {
+            walkVelocity = 0.5f;
         }
         else
         {
@@ -93,10 +105,12 @@ public class PlayerController : MonoBehaviour
             Debug.Log("I have fallen and can't get up");
         }
     }
+
     void GunGoBoom()
     {
         GameObject newbullet = Instantiate(bulletPrefab, bulletSpawnPoint.gameObject.transform. position, transform.rotation);
         Rigidbody2D bulletRB = newbullet.GetComponent<Rigidbody2D>();
-        bulletRB.velocity = new Vector2(bulletSpeed,bulletSpeed);
+        //newbullet.GetComponent<bulletSpwanPoint>().SetVelocity(transform.up * bulletSpeed);
+        bulletRB.velocity = new Vector2(0f, bulletSpeed);
     }
 }
