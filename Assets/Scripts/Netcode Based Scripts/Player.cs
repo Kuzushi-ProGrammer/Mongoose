@@ -10,10 +10,11 @@ public class Player : NetworkBehaviour
     [SyncVar(hook = nameof(OnChange))] string mongoose = "impostor"; // Runs the function SetString on variable change, only on server
 
     SpriteRenderer spriteRenderer;
-    Rigidbody2D rb;
+    Rigidbody2D playerRigidbody;
 
     ProjectileNetwork projectileNw;
     GameObject projectileprefab;
+    Rigidbody2D projectileRigidbody;
 
     void HandleMovement()
     {
@@ -46,10 +47,9 @@ public class Player : NetworkBehaviour
                 CommandTest();
             }
 
-            if (Input.GetKeyDown(KeyCode.Backspace))
+            if (Input.GetKey(KeyCode.Backspace))
             {
                 projectileNw.SpawnProjectile();
-                // SpawnProjectile();
             }
         }
 
@@ -58,11 +58,6 @@ public class Player : NetworkBehaviour
             RpcTest();
         }
 
-    }
-    public void SpawnProjectile()
-    {
-        GameObject projobj = Instantiate(projectileprefab, new Vector3(1, 0, 0), Quaternion.identity);
-        NetworkServer.Spawn(projobj);
     }
 
     //Rpc stands for Remote Procedure Call
