@@ -33,9 +33,7 @@ public class PlayerNetworkManager : NetworkManager
 
     void OnCreateCharacter(NetworkConnectionToClient connection, CharacterMessage message)
     {
-
         GameObject playerObject = Instantiate(playerPrefab);
-        
         Player player = playerObject.GetComponent<Player>();
         player.playerColor = message.playerColor;
         NetworkServer.AddPlayerForConnection(connection, playerObject);
