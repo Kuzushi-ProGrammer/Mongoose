@@ -58,6 +58,9 @@ public class Player : NetworkBehaviour
             RpcTest();
         }
 
+
+
+
     }
 
     //Rpc stands for Remote Procedure Call

@@ -5,6 +5,10 @@ using Mirror;
 
 public class PlayerNetworkManager : NetworkManager
 {
+    PlayerData playerData;
+    [SerializeField] GameObject mongoosePrefab;
+    [SerializeField] GameObject racoonPrefab;
+
     public override void OnStartServer()
     {
         base.OnStartServer();
@@ -29,8 +33,10 @@ public class PlayerNetworkManager : NetworkManager
 
     void OnCreateCharacter(NetworkConnectionToClient connection, CharacterMessage message)
     {
-        GameObject playerObject = Instantiate(playerPrefab);
-
+        if (playerData.)
+        {
+            GameObject playerObject = Instantiate(playerPrefab);
+        }
         Player player = playerObject.GetComponent<Player>();
         player.playerColor = message.playerColor;
         NetworkServer.AddPlayerForConnection(connection, playerObject);
