@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    Rigidbody2D rb;
-    float walkVelocity = 1f;
+    Rigidbody2D PlayerRB;
+    float walkVelocity = 10f;
     float health = 3f;
     public Vector2 playerPos;
    // public GameObject playerPrefab;
@@ -19,13 +19,13 @@ public class PlayerController : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform bulletSpawnPoint;
     public Sprite[] bullet;
-    float bulletSpeed = 0f;
-
+    int bulletSpeed = 25;
+    Rigidbody2D BulletRB;
     // Start is called before the first frame update
     void Start()
     {
        // newPlayer = Instantiate(playerPrefab, playerspawnpoint.transform, false);
-        rb = GetComponent<Rigidbody2D>();
+        PlayerRB = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -53,42 +53,42 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + walkVelocity);
+            PlayerRB.velocity = new Vector2(0f, walkVelocity);
 
         }
         if (Input.GetKey(KeyCode.A))
         {
-            rb.velocity = new Vector2(rb.velocity.x - walkVelocity, rb.velocity.y);
+            PlayerRB.velocity = new Vector2(- walkVelocity,0f);
 
         }
         if (Input.GetKey(KeyCode.S))
         {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y - walkVelocity);
+            PlayerRB.velocity = new Vector2(0f,- walkVelocity);
 
         }
         if (Input.GetKey(KeyCode.D))
         {
-            rb.velocity = new Vector2(rb.velocity.x + walkVelocity, rb.velocity.y);
+            PlayerRB.velocity = new Vector2(walkVelocity,0f);
 
         }
         if (Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.LeftShift))
         {
-            walkVelocity = 2f;
+            walkVelocity = 20f;
         }
-        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.LeftControl))
         {
-            walkVelocity = 0.5f;
+            walkVelocity = 5f;
         }
         else
         {
-            walkVelocity = 1f;
+            walkVelocity = 10f;
 
         }
 
 
         if (hasGun)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 GunGoBoom();
             }
@@ -109,8 +109,9 @@ public class PlayerController : MonoBehaviour
     void GunGoBoom()
     {
         GameObject newbullet = Instantiate(bulletPrefab, bulletSpawnPoint.gameObject.transform. position, transform.rotation);
-        Rigidbody2D bulletRB = newbullet.GetComponent<Rigidbody2D>();
-        //newbullet.GetComponent<bulletSpwanPoint>().SetVelocity(transform.up * bulletSpeed);
-        bulletRB.velocity = new Vector2(0f, bulletSpeed);
+        Rigidbody2D BulletRB = newbullet.GetComponent<Rigidbody2D>();
+        BulletRB.AddForce(bulletSpawnPoint.right * bulletSpeed, ForceMode2D.Impulse);
+        
+       // bulletRB.velocity = new Vector3(bulletSpeed, 0f,0f);
     }
 }
