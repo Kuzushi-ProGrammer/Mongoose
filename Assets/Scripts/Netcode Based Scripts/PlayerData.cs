@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
+    CharacterMessage message;
+
     public struct PlayerDataMessage : NetworkMessage
     {
         public string species; //mongoose or racoon
         public int scrap; //money
     }
+
     public void SendPlayerData(string species, int scrap)
     {
         PlayerDataMessage data = new PlayerDataMessage()

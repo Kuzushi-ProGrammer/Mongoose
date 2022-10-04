@@ -6,8 +6,8 @@ using Mirror;
 public class PlayerNetworkManager : NetworkManager
 {
     PlayerData playerData;
-    [SerializeField] GameObject mongoosePrefab;
-    [SerializeField] GameObject racoonPrefab;
+    public GameObject mongoosePrefab;
+    public GameObject racoonPrefab;
 
     public override void OnStartServer()
     {
@@ -23,7 +23,8 @@ public class PlayerNetworkManager : NetworkManager
 
         CharacterMessage characterMessage = new CharacterMessage
         {
-            playerColor = Color.green
+            playerColor = Color.green,
+            playerSpecies = "mongoose"
         };
 
         NetworkClient.Send(characterMessage); // Changes the state of the cube when it connects to the server, only server side
@@ -33,6 +34,16 @@ public class PlayerNetworkManager : NetworkManager
 
     void OnCreateCharacter(NetworkConnectionToClient connection, CharacterMessage message)
     {
+
+        if (message.playerSpecies.Equals("mongoose"))
+        {
+            Debug.Log("MONGOOSE");
+        }
+        else if (message.playerSpecies.Equals("racoon"))
+        {
+            Debug.Log("RACOON");
+        }
+
         GameObject playerObject = Instantiate(playerPrefab);
         Player player = playerObject.GetComponent<Player>();
         player.playerColor = message.playerColor;
@@ -46,4 +57,5 @@ public class PlayerNetworkManager : NetworkManager
 public struct CharacterMessage : NetworkMessage
 {
     public Color playerColor;
+    public string playerSpecies;
 }
