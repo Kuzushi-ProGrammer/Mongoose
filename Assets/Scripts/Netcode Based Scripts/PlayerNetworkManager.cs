@@ -5,6 +5,7 @@ using Mirror;
 
 public class PlayerNetworkManager : NetworkManager
 {
+    
     PlayerData playerData;
     public GameObject mongoosePrefab;
     public GameObject racoonPrefab;
@@ -35,15 +36,6 @@ public class PlayerNetworkManager : NetworkManager
     void OnCreateCharacter(NetworkConnectionToClient connection, CharacterMessage message)
     {
 
-        if (message.playerSpecies.Equals("mongoose"))
-        {
-            Debug.Log("MONGOOSE");
-        }
-        else if (message.playerSpecies.Equals("racoon"))
-        {
-            Debug.Log("RACOON");
-        }
-
         GameObject playerObject = Instantiate(playerPrefab);
         Player player = playerObject.GetComponent<Player>();
         player.playerColor = message.playerColor;
@@ -51,8 +43,9 @@ public class PlayerNetworkManager : NetworkManager
 
         Debug.Log("Character Created");
     }
-
+    
 }
+
 
 public struct CharacterMessage : NetworkMessage
 {

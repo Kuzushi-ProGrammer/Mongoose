@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8308460689505964197}
   - component: {fileID: 5825789330060076290}
   - component: {fileID: -9158104145962231119}
-  - component: {fileID: 8185364784804961624}
+  - component: {fileID: -1473208130015819020}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Untagged
@@ -190,6 +190,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   playerColor: {r: 0, g: 0.0816164, b: 1, a: 1}
+  racoon: {fileID: 0}
+  mongoose: {fileID: 0}
 --- !u!114 &8308460689505964197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,7 +255,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8185364784804961624
+--- !u!114 &-1473208130015819020
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -262,7 +264,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6535155565887453268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79874ac94d5b1314788ecf0e86bd23fd, type: 3}
+  m_Script: {fileID: 11500000, guid: 1101e950764e45043ba229278f7201d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0

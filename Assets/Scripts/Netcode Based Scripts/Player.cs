@@ -1,13 +1,17 @@
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.Examples;
 using UnityEngine;
 
 public class Player : NetworkBehaviour
 {
     public Color playerColor;
+    public Sprite racoon;
+    public Sprite mongoose;
 
-    [SyncVar(hook = nameof(OnChange))] string mongoose = "impostor"; // Runs the function SetString on variable change, only on server
+    [SyncVar(hook = nameof(OnChange))] string mongooseDebug = "impostor"; // Runs the function SetString on variable change, only on server
+    [SyncVar(hook = nameof(SpeciesChange))] string species = "mongoose"; // mongoose is default value
 
     SpriteRenderer spriteRenderer;
     Rigidbody2D playerRigidbody;
@@ -51,16 +55,34 @@ public class Player : NetworkBehaviour
             {
                 projectileNw.SpawnProjectile();
             }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                species = "mongoose";
+            }
+            else if (Input.GetKeyDown(KeyCode.M))
+            {
+                species = "racoon";
+            }
         }
 
-        if (isServer && Input.GetKeyDown(KeyCode.M))
+        if (isServer && Input.GetKeyDown(KeyCode.LeftShift))
         {
             RpcTest();
         }
 
+    }
 
-
-
+    public void SpeciesChange(string oldspecies, string newspecies)
+    {
+        if (species == "mongoose")
+        {
+            spriteRenderer.sprite = mongoose;
+        }
+        else if (species == "racoon")
+        {
+            spriteRenderer.sprite = racoon;
+        }
     }
 
     //Rpc stands for Remote Procedure Call
@@ -82,7 +104,7 @@ public class Player : NetworkBehaviour
     {
         Debug.Log("Command recieved");
         playerColor = Color.yellow;
-        mongoose = "sus"; // Changes string on server
+        mongooseDebug = "sus"; // Changes string on server
         RpcReciever();
     }
 
