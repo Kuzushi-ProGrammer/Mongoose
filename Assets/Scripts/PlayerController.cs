@@ -1,6 +1,7 @@
 
 
 
+using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 
@@ -11,16 +12,22 @@ public class PlayerController : MonoBehaviour
     float walkVelocity = 10f;
     float health = 3f;
     public Vector2 playerPos;
-   // public GameObject playerPrefab;
-  //  public GameObject playerspawnpoint;
+    // public GameObject playerPrefab;
+    public Transform playerSpawnPoint;
   //  GameObject newPlayer;
     //Gun stuff
     bool hasGun = true;
     public GameObject bulletPrefab;
     public Transform bulletSpawnPoint;
     public Sprite[] bullet;
-    int bulletSpeed = 25;
+    int bulletSpeed = 30;
     Rigidbody2D BulletRB;
+    float ammo = 10;
+    bool gunHasAmmo = true;
+    float spareAmmo = 10;
+    bool canshoot = true;
+    float reloadtimer = 0f;
+    float reloaddelay = 3f;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,11 +52,6 @@ public class PlayerController : MonoBehaviour
         float lookAngle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, lookAngle));
         // print(playerPos + "PLAYER");
-
-        if (Input.GetKeyDown(KeyCode.Backspace))
-        {
-            
-        }
 
         if (Input.GetKey(KeyCode.W))
         {
@@ -85,13 +87,21 @@ public class PlayerController : MonoBehaviour
 
         }
 
-
         if (hasGun)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (gunHasAmmo)
             {
-                GunGoBoom();
+                
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    GunGoBoom();
+                }
+                if (Input.GetKey(KeyCode.Space))
+                {
+                    GunGoBoom();
+                }
             }
+        
         }
     }
     //Health
@@ -108,10 +118,51 @@ public class PlayerController : MonoBehaviour
 
     void GunGoBoom()
     {
-        GameObject newbullet = Instantiate(bulletPrefab, bulletSpawnPoint.gameObject.transform. position, transform.rotation);
-        Rigidbody2D BulletRB = newbullet.GetComponent<Rigidbody2D>();
-        BulletRB.AddForce(bulletSpawnPoint.right * bulletSpeed, ForceMode2D.Impulse);
+        if (canshoot)
+        {
+            GameObject newbullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, transform.rotation);
+            Rigidbody2D BulletRB = newbullet.GetComponent<Rigidbody2D>();
+            BulletRB.AddForce(bulletSpawnPoint.right * bulletSpeed, ForceMode2D.Impulse);
+            ammo = ammo - 1;
+            Debug.Log("you have " + ammo);
+            if (ammo == 0)
+            {
+                gunHasAmmo = false;
+                Debug.Log("out of ammo");
+
+                if (spareAmmo > 0)
+                {
+                    canshoot = false;
+                    StartCoroutine(gunNoGoBoom());
+                    //reloadtimer += Time.deltaTime;
+                    /*
+                    if (reloaddelay >= reloadtimer)
+                    {
+                        ammo = ammo + 10;
+                        spareAmmo = spareAmmo - 1;
+                        Debug.Log("reloading");
+                        gunHasAmmo = true;
+                        reloadtimer = 0f;
+                    } */
+
+
+                }
+            }
+        }
         
-       // bulletRB.velocity = new Vector3(bulletSpeed, 0f,0f);
+
     }
+
+    IEnumerator gunNoGoBoom()
+    {
+        Debug.Log("reloading");
+        yield return new WaitForSeconds(3);
+        canshoot = true;
+        ammo = ammo + 10;
+        spareAmmo = spareAmmo - 1;
+        Debug.Log(ammo);
+        Debug.Log("done reload");
+        gunHasAmmo = true;
+    }
+ 
 }
