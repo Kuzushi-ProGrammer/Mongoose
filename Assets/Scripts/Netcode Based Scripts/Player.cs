@@ -20,6 +20,7 @@ public class Player : NetworkBehaviour
     GameObject projectileprefab;
     Rigidbody2D projectileRigidbody;
 
+    /*
     void HandleMovement()
     {
         if (isLocalPlayer)
@@ -31,6 +32,7 @@ public class Player : NetworkBehaviour
             transform.position = transform.position + movement;
         }
     }
+    */
 
     private void Start()
     {
@@ -42,7 +44,7 @@ public class Player : NetworkBehaviour
     {
         spriteRenderer.color = playerColor;
 
-        HandleMovement();
+        //HandleMovement();
 
         if (isLocalPlayer)
         {

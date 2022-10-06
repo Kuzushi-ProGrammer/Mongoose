@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 7111889138457894214}
   - component: {fileID: 4406876290496277927}
   - component: {fileID: 8308460689505964197}
+  - component: {fileID: -1473208130015819020}
   - component: {fileID: 5825789330060076290}
   - component: {fileID: -9158104145962231119}
-  - component: {fileID: -1473208130015819020}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Untagged
@@ -208,6 +208,23 @@ MonoBehaviour:
   syncInterval: 0.1
   projectileprefab: {fileID: 9208945097906334299, guid: 104ac8639c32d2c4b81838f926744efe, type: 3}
   projectileSpeed: 5
+--- !u!114 &-1473208130015819020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6535155565887453268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1101e950764e45043ba229278f7201d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  showRoomGUI: 1
+  readyToBegin: 0
+  index: 0
 --- !u!50 &5825789330060076290
 Rigidbody2D:
   serializedVersion: 4
@@ -255,20 +272,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-1473208130015819020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6535155565887453268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1101e950764e45043ba229278f7201d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  showRoomGUI: 1
-  readyToBegin: 0
-  index: 0
