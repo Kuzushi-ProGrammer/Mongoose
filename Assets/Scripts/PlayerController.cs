@@ -22,12 +22,11 @@ public class PlayerController : MonoBehaviour
     public Sprite[] bullet;
     int bulletSpeed = 30;
     Rigidbody2D BulletRB;
-    float ammo = 10;
+    float ammo = 30;
     bool gunHasAmmo = true;
-    float spareAmmo = 10;
+    float spareAmmo = 60;
     bool canshoot = true;
-    float reloadtimer = 0f;
-    float reloaddelay = 3f;
+    bool fireCoolDown = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -98,7 +97,12 @@ public class PlayerController : MonoBehaviour
                 }
                 if (Input.GetKey(KeyCode.Space))
                 {
-                    GunGoBoom();
+                    if (fireCoolDown == true)
+                    {
+                        GunGoBoom();
+                        fireCoolDown = false;
+                        StartCoroutine(fireRate());
+                    }
                 }
             }
         
@@ -120,34 +124,37 @@ public class PlayerController : MonoBehaviour
     {
         if (canshoot)
         {
-            GameObject newbullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, transform.rotation);
-            Rigidbody2D BulletRB = newbullet.GetComponent<Rigidbody2D>();
-            BulletRB.AddForce(bulletSpawnPoint.right * bulletSpeed, ForceMode2D.Impulse);
-            ammo = ammo - 1;
-            Debug.Log("you have " + ammo);
-            if (ammo == 0)
-            {
-                gunHasAmmo = false;
-                Debug.Log("out of ammo");
-
-                if (spareAmmo > 0)
+            
+            
+                GameObject newbullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, transform.rotation);
+                Rigidbody2D BulletRB = newbullet.GetComponent<Rigidbody2D>();
+                BulletRB.AddForce(bulletSpawnPoint.right * bulletSpeed, ForceMode2D.Impulse);
+                ammo = ammo - 1;
+                Debug.Log("you have " + ammo);
+                if (ammo == 0)
                 {
-                    canshoot = false;
-                    StartCoroutine(gunNoGoBoom());
-                    //reloadtimer += Time.deltaTime;
-                    /*
-                    if (reloaddelay >= reloadtimer)
+                    gunHasAmmo = false;
+                    Debug.Log("out of ammo");
+
+                    if (spareAmmo > 0)
                     {
-                        ammo = ammo + 10;
-                        spareAmmo = spareAmmo - 1;
-                        Debug.Log("reloading");
-                        gunHasAmmo = true;
-                        reloadtimer = 0f;
-                    } */
+                        canshoot = false;
+                        StartCoroutine(gunNoGoBoom());
+                        //reloadtimer += Time.deltaTime;
+                        /*
+                        if (reloaddelay >= reloadtimer)
+                        {
+                            ammo = ammo + 10;
+                            spareAmmo = spareAmmo - 1;
+                            Debug.Log("reloading");
+                            gunHasAmmo = true;
+                            reloadtimer = 0f;
+                        } */
 
 
+                    }
                 }
-            }
+            
         }
         
 
@@ -158,11 +165,17 @@ public class PlayerController : MonoBehaviour
         Debug.Log("reloading");
         yield return new WaitForSeconds(3);
         canshoot = true;
-        ammo = ammo + 10;
+        ammo = ammo + 30;
         spareAmmo = spareAmmo - 1;
         Debug.Log(ammo);
         Debug.Log("done reload");
+        Debug.Log("mags left"+spareAmmo);
         gunHasAmmo = true;
     }
- 
+    IEnumerator fireRate()
+    {
+        yield return new WaitForSeconds(0.1f);
+        fireCoolDown = true;
+        Debug.Log("Gun go daka daka");
+    }
 }
