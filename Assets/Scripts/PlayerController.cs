@@ -5,8 +5,6 @@ using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using Mirror;
-using Mirror.Examples.Tanks;
-
 
 public class PlayerController : NetworkBehaviour
 {
@@ -38,7 +36,6 @@ public class PlayerController : NetworkBehaviour
 
     void Start()
     {
-       // newPlayer = Instantiate(playerPrefab, playerspawnpoint.transform, false);
         PlayerRB = GetComponent<Rigidbody2D>();
     }
 
@@ -50,7 +47,6 @@ public class PlayerController : NetworkBehaviour
         PlayerRotation();
     }
 
-    [TargetRpc]
     void PlayerRotation()
     {
         Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
