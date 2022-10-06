@@ -47,6 +47,12 @@ public class PlayerController : NetworkBehaviour
     {
         HandlePlayer();
 
+        PlayerRotation();
+    }
+
+    [TargetRpc]
+    void PlayerRotation()
+    {
         Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = 0;
@@ -56,7 +62,6 @@ public class PlayerController : NetworkBehaviour
 
         float lookAngle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, lookAngle));
-
     }
 
     void HandlePlayer()
