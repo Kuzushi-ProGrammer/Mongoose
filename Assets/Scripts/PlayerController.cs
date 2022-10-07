@@ -5,6 +5,7 @@ using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using Mirror;
+using System.Xml.Serialization;
 
 public class PlayerController : NetworkBehaviour
 {
@@ -49,6 +50,7 @@ public class PlayerController : NetworkBehaviour
 
     void PlayerRotation()
     {
+
         Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = 0;
@@ -58,6 +60,7 @@ public class PlayerController : NetworkBehaviour
 
         float lookAngle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, lookAngle));
+
     }
 
     void HandlePlayer()
@@ -105,20 +108,26 @@ public class PlayerController : NetworkBehaviour
 
             NetworkServer.Spawn(newbullet);
 
-            if (isLocalPlayer)
-            {
-                ammo = ammo - 1;
-                Debug.Log("you have " + ammo);
-                if (ammo == 0)
-                {
-                    gunHasAmmo = false;
-                    Debug.Log("out of ammo");
+            ammoDecrease();
 
-                    if (spareAmmo > 0)
-                    {
-                        canshoot = false;
-                        StartCoroutine(gunNoGoBoom());
-                    }
+        }
+    }
+
+    void ammoDecrease()
+    {
+        if (isLocalPlayer)
+        {
+            ammo = ammo - 1;
+            Debug.Log("you have " + ammo);
+            if (ammo == 0)
+            {
+                gunHasAmmo = false;
+                Debug.Log("out of ammo");
+
+                if (spareAmmo > 0)
+                {
+                    canshoot = false;
+                    StartCoroutine(gunNoGoBoom());
                 }
             }
         }

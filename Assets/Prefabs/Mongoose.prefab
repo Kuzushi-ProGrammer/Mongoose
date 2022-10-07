@@ -228,7 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  clientAuthority: 0
+  clientAuthority: 1
   sendRate: 30
   bufferTimeMultiplier: 2
   bufferSizeLimit: 64
