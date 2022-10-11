@@ -101,12 +101,12 @@ public class PlayerController : NetworkBehaviour
         }
     }
 
-    [Command]
+ // Bullet will only spawn properly on server with [Command] and only spawn properly on client with no command 
+ //[Command]
     void GunGoBoom()
     {
         if (canshoot)
         {
-
             GameObject newbullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, transform.rotation);
 
             Rigidbody2D BulletRB = newbullet.GetComponent<Rigidbody2D>();
@@ -118,6 +118,7 @@ public class PlayerController : NetworkBehaviour
 
         }
     }
+
 
     void ammoDecrease()
     {
@@ -135,6 +136,7 @@ public class PlayerController : NetworkBehaviour
                     canshoot = false;
                     StartCoroutine(gunNoGoBoom());
                 }
+            }
             
         }
     }
@@ -151,6 +153,7 @@ public class PlayerController : NetworkBehaviour
         Debug.Log("mags left"+spareAmmo);
         gunHasAmmo = true;
     }
+
     IEnumerator fireRate()
     {
         yield return new WaitForSeconds(0.1f);
