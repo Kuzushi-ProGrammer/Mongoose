@@ -4,41 +4,52 @@
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
+using Mirror;
+using System.Xml.Serialization;
 
-
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
     Rigidbody2D PlayerRB;
+    Rigidbody2D BulletRB;
+
+    public Vector2 playerPos;
+
+    public Transform playerSpawnPoint;
+    public Transform bulletSpawnPoint;
+
+    public Sprite[] bullet;
+
+    public GameObject bulletPrefab;
+
     float walkVelocity = 10f;
     float health = 3f;
-    public Vector2 playerPos;
-    // public GameObject playerPrefab;
-    public Transform playerSpawnPoint;
-  //  GameObject newPlayer;
-    //Gun stuff
+    float ammo = 10;
+    float spareAmmo = 10;
+    float reloadtimer = 0f;
+    float reloaddelay = 3f;
+
     bool hasGun = true;
-    public GameObject bulletPrefab;
-    public Transform bulletSpawnPoint;
-    public Sprite[] bullet;
-    int bulletSpeed = 30;
-    Rigidbody2D BulletRB;
-    float ammo = 30;
     bool gunHasAmmo = true;
-    float spareAmmo = 60;
     bool canshoot = true;
     bool fireCoolDown = true;
-    // Start is called before the first frame update
+
+    int bulletSpeed = 30;
+
     void Start()
     {
-       // newPlayer = Instantiate(playerPrefab, playerspawnpoint.transform, false);
         PlayerRB = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // playerPos = rb.position;
-       //  mousepos = Input.mousePosition;
+        HandlePlayer();
+
+        PlayerRotation();
+    }
+
+    void PlayerRotation()
+    {
 
         Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
         Vector3 mousePos = Input.mousePosition;
@@ -47,55 +58,24 @@ public class PlayerController : MonoBehaviour
         mousePos.y -= objectPos.y;
 
 
-        //Vector2 playerDirection = mousePos - rb.transform.position;
         float lookAngle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, lookAngle));
-        // print(playerPos + "PLAYER");
 
-        if (Input.GetKey(KeyCode.W))
-        {
-            PlayerRB.velocity = new Vector2(0f, walkVelocity);
+    }
 
-        }
-        if (Input.GetKey(KeyCode.A))
+    void HandlePlayer()
+    {
+        if (isLocalPlayer)
         {
-            PlayerRB.velocity = new Vector2(- walkVelocity,0f);
+            float moveHorizontal = Input.GetAxis("Horizontal");
+            float moveVertical = Input.GetAxis("Vertical");
 
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            PlayerRB.velocity = new Vector2(0f,- walkVelocity);
+            Vector3 movement = new Vector3(moveHorizontal * 0.1f, moveVertical * 0.1f, 0);
+            transform.position = transform.position + movement;
 
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            PlayerRB.velocity = new Vector2(walkVelocity,0f);
-
-        }
-        if (Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.LeftShift))
-        {
-            walkVelocity = 20f;
-        }
-        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.LeftControl))
-        {
-            walkVelocity = 5f;
-        }
-        else
-        {
-            walkVelocity = 10f;
-
-        }
-
-        if (hasGun)
-        {
-            if (gunHasAmmo)
+            if (hasGun && gunHasAmmo)
             {
-                
-                if (Input.GetKeyDown(KeyCode.Mouse0))
-                {
-                    GunGoBoom();
-                }
-                if (Input.GetKey(KeyCode.Space))
+                if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKey(KeyCode.Space))
                 {
                     if (fireCoolDown == true)
                     {
@@ -105,9 +85,10 @@ public class PlayerController : MonoBehaviour
                     }
                 }
             }
-        
         }
+
     }
+
     //Health
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -120,44 +101,42 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    [Command]
     void GunGoBoom()
     {
         if (canshoot)
         {
-            
-            
-                GameObject newbullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, transform.rotation);
-                Rigidbody2D BulletRB = newbullet.GetComponent<Rigidbody2D>();
-                BulletRB.AddForce(bulletSpawnPoint.right * bulletSpeed, ForceMode2D.Impulse);
-                ammo = ammo - 1;
-                Debug.Log("you have " + ammo);
-                if (ammo == 0)
+
+            GameObject newbullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, transform.rotation);
+
+            Rigidbody2D BulletRB = newbullet.GetComponent<Rigidbody2D>();
+            BulletRB.AddForce(bulletSpawnPoint.right * bulletSpeed, ForceMode2D.Impulse);
+
+            NetworkServer.Spawn(newbullet);
+
+            ammoDecrease();
+
+        }
+    }
+
+    void ammoDecrease()
+    {
+        if (isLocalPlayer)
+        {
+            ammo = ammo - 1;
+            Debug.Log("you have " + ammo);
+            if (ammo == 0)
+            {
+                gunHasAmmo = false;
+                Debug.Log("out of ammo");
+
+                if (spareAmmo > 0)
                 {
-                    gunHasAmmo = false;
-                    Debug.Log("out of ammo");
-
-                    if (spareAmmo > 0)
-                    {
-                        canshoot = false;
-                        StartCoroutine(gunNoGoBoom());
-                        //reloadtimer += Time.deltaTime;
-                        /*
-                        if (reloaddelay >= reloadtimer)
-                        {
-                            ammo = ammo + 10;
-                            spareAmmo = spareAmmo - 1;
-                            Debug.Log("reloading");
-                            gunHasAmmo = true;
-                            reloadtimer = 0f;
-                        } */
-
-
-                    }
+                    canshoot = false;
+                    StartCoroutine(gunNoGoBoom());
                 }
             
         }
-        
-
     }
 
     IEnumerator gunNoGoBoom()
