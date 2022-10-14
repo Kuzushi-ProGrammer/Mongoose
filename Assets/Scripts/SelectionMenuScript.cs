@@ -7,15 +7,18 @@ public class SelectionMenuScript : MonoBehaviour
     [SerializeField] GameObject mongoose;
     [SerializeField] GameObject racoon;
 
-    Transform spawnpoint;
+    [SerializeField]Transform spawnpoint;
 
     public void ChangeToMongoose()
     {
-        Instantiate(mongoose, spawnpoint);
+        racoon.SetActive(false);
+        mongoose.SetActive(true);
+        //something something change team to mongoose
     }
 
     public void ChangeToRacoon()
     {
-        Instantiate(racoon, spawnpoint);
+        mongoose.SetActive(false);
+        racoon.SetActive(true);
     }
 }
