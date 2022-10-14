@@ -49,7 +49,7 @@ public class PlayerNetworkManager : NetworkManager
         // Cache a reference to the current player object
         GameObject oldPlayer = connection.identity.gameObject;
 
-        newprefab =
+        //newprefab =
 
         NetworkServer.ReplacePlayerForConnection(connection, Instantiate(newprefab), true);
         Destroy(oldPlayer, 0.1f);
