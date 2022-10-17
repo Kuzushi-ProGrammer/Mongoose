@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: f8445e0180a7e8b43ad1abc9f1066510
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - floorGun: {fileID: 8719021813734931350, guid: 20f7e72cac1f30542be805259b334815, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

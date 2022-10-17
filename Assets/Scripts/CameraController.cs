@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public class CameraController : MonoBehaviour
 { 
-        public GameObject player;
-        public float cameraHeight = 20.0f;
+    public Transform playerTransform;
+    public GameObject playerObj;
 
-        void Update()
-        {
-            Vector3 pos = player.transform.position;
-            pos.z += cameraHeight;
-            transform.position = pos;
-        }
+    private void Awake()
+    {
+        playerTransform = playerObj.GetComponent<Transform>();
+    }
+
+    void Update()
+    {
+        transform.position =  new Vector3(playerTransform.position.x, playerTransform.position.y, -10);
+    }
     
 }

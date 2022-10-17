@@ -4,8 +4,7 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - playerPrefab: {fileID: 8072103690219260291, guid: 8121d5c55b751b1468cb92237c3ebf08, type: 3}
-  - playerspawnpoint: {fileID: 1509978434261300943, guid: 8090df99e464c2e4d986062228672f29, type: 3}
+  - playerSpawnPoint: {fileID: 491647795527138923, guid: 8c694e4659e13f241a8cf573e0be559d, type: 3}
   - bulletPrefab: {fileID: 8233897029462314480, guid: f9531ff7ca630814194c1f183ddaab2c, type: 3}
   - bulletSpawnPoint: {instanceID: 0}
   executionOrder: 0
