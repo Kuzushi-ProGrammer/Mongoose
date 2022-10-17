@@ -21,8 +21,11 @@ public class PlayerController : NetworkBehaviour
 
     public GameObject bulletPrefab;
 
+    public string species;
+
     float walkVelocity = 10f;
     float health = 3f;
+
     float ammo = 10;
     float spareAmmo = 10;
     float reloadtimer = 0f;
@@ -32,6 +35,10 @@ public class PlayerController : NetworkBehaviour
     bool gunHasAmmo = true;
     bool canshoot = true;
     bool fireCoolDown = true;
+
+    bool canHide;
+    bool isDisguised;
+    bool canDisguise;
 
     int bulletSpeed = 30;
 
@@ -99,6 +106,12 @@ public class PlayerController : NetworkBehaviour
             Destroy(gameObject);
             Debug.Log("I have fallen and can't get up");
         }
+
+        if (collision.tag == "TrashCan" && canHide && Input.GetKeyDown(KeyCode.E))
+        {
+            // something something hide in trashcan
+        }
+
     }
 
  // Bullet will only spawn properly on server with [Command] and only spawn properly on client with no command 
@@ -159,5 +172,19 @@ public class PlayerController : NetworkBehaviour
         yield return new WaitForSeconds(0.1f);
         fireCoolDown = true;
         Debug.Log("Gun go daka daka");
+    }
+
+    public void ChangeSpeciesToMongoose()
+    {
+        species = "mongoose";
+        canHide = false;
+        canDisguise = true;
+    }
+
+    public void ChangeSpeciesToRacoon()
+    {
+        species = "racoon";
+        canHide = true;
+        canDisguise = false;
     }
 }

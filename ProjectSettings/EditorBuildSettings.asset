@@ -14,10 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Networkin/LobbyScene.unity
     guid: c13b387b2a67a5d4bb7e82f00ba848f4
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Networkin/OfflineScene.unity
     guid: 246c177fd9142ce40b9ae9686b646f22
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Networkin/NetworkMain.unity
     guid: 287da87eabb238e4c8e6d464f7aad1a9
   m_configObjects: {}
