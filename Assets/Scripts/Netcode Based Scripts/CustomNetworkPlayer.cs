@@ -16,6 +16,7 @@ public class CustomNetworkPlayer : NetworkRoomPlayer
 
     private void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.M))
         {
             message.playerSpecies = "mongoose";
@@ -28,6 +29,7 @@ public class CustomNetworkPlayer : NetworkRoomPlayer
             player.SpeciesChange("mongoose", "racoon");
             Debug.Log("R was pressed");
         }
+        */
     }
 
 }

@@ -25,7 +25,7 @@ public class PlayerNetworkManager : NetworkManager
         CharacterMessage characterMessage = new CharacterMessage
         {
             playerColor = Color.green,
-            playerSpecies = "mongoose"
+            //playerSpeciesPrefab 
         };
 
         NetworkClient.Send(characterMessage); // Changes the state of the cube when it connects to the server, only server side
@@ -44,11 +44,22 @@ public class PlayerNetworkManager : NetworkManager
         Debug.Log("Character Created");
     }
     
+    public void ChangeCharacter(NetworkConnectionToClient connection, GameObject newprefab)
+    {
+        // Cache a reference to the current player object
+        GameObject oldPlayer = connection.identity.gameObject;
+
+        //newprefab =
+
+        NetworkServer.ReplacePlayerForConnection(connection, Instantiate(newprefab), true);
+        Destroy(oldPlayer, 0.1f);
+    }
+
 }
 
 
 public struct CharacterMessage : NetworkMessage
 {
     public Color playerColor;
-    public string playerSpecies;
+    //public GameObject playerSpeciesPrefab;
 }
