@@ -178,8 +178,12 @@ MonoBehaviour:
   playerPos: {x: 0, y: 0}
   playerSpawnPoint: {fileID: 0}
   bulletSpawnPoint: {fileID: 80026214748917291}
-  bullet: []
+  bullet: {fileID: 21300000, guid: 67937b7fe6fb61740b8467a16b268532, type: 3}
+  mongooseSprite: {fileID: 21300000, guid: 77eab529c13c7d941b6f07a7923d7da1, type: 3}
+  racoonSprite: {fileID: 21300000, guid: 33d34661e6aa6fe4683cc7c4a57b5cd6, type: 3}
+  debugSprite: {fileID: 21300000, guid: 816be8341c2e00c48a0deff6fe49f98f, type: 3}
   bulletPrefab: {fileID: 8233897029462314480, guid: f9531ff7ca630814194c1f183ddaab2c, type: 3}
+  species: 
 --- !u!114 &-4846267156517376780
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,13 +11,17 @@ public class PlayerController : NetworkBehaviour
 {
     Rigidbody2D PlayerRB;
     Rigidbody2D BulletRB;
+    SpriteRenderer spriteRenderer;
 
     public Vector2 playerPos;
 
     public Transform playerSpawnPoint;
     public Transform bulletSpawnPoint;
 
-    public Sprite[] bullet;
+    [SerializeField] Sprite bullet;
+    [SerializeField] Sprite mongooseSprite;
+    [SerializeField] Sprite racoonSprite;
+    [SerializeField] Sprite debugSprite;
 
     public GameObject bulletPrefab;
 
@@ -45,6 +49,7 @@ public class PlayerController : NetworkBehaviour
     void Start()
     {
         PlayerRB = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -53,8 +58,10 @@ public class PlayerController : NetworkBehaviour
         HandlePlayer();
 
         PlayerRotation();
-    }
 
+        SpeciesCheck();
+    }
+    //Player Rotation
     void PlayerRotation()
     {
 
@@ -70,6 +77,7 @@ public class PlayerController : NetworkBehaviour
 
     }
 
+    //Player M
     void HandlePlayer()
     {
         if (isLocalPlayer)
@@ -92,8 +100,52 @@ public class PlayerController : NetworkBehaviour
                     }
                 }
             }
+
+            if (canDisguise)
+            {
+
+            }
         }
 
+    }
+
+    //Species Changing
+    public void ChangeSpeciesToMongoose()
+    {
+        species = "mongoose";
+        canHide = false;
+        canDisguise = true;
+    }
+    public void ChangeSpeciesToRacoon()
+    {
+        species = "racoon";
+        canHide = true;
+        canDisguise = false;
+    }
+
+    public void SpeciesCheck()
+    {
+        if (isLocalPlayer)
+        {
+            switch (species)
+            {
+                case "mongoose":
+                    spriteRenderer.sprite = mongooseSprite;
+                    break;
+
+                case "disguised_mongoose":
+                    spriteRenderer.sprite = debugSprite;
+                    break;
+
+                case "racoon":
+                    spriteRenderer.sprite = racoonSprite;
+                    break;
+
+                default:
+                    spriteRenderer.sprite = debugSprite;
+                    break;
+            }
+        }
     }
 
     //Health
@@ -131,8 +183,6 @@ public class PlayerController : NetworkBehaviour
 
         }
     }
-
-
     void ammoDecrease()
     {
         if (isLocalPlayer)
@@ -174,17 +224,5 @@ public class PlayerController : NetworkBehaviour
         Debug.Log("Gun go daka daka");
     }
 
-    public void ChangeSpeciesToMongoose()
-    {
-        species = "mongoose";
-        canHide = false;
-        canDisguise = true;
-    }
 
-    public void ChangeSpeciesToRacoon()
-    {
-        species = "racoon";
-        canHide = true;
-        canDisguise = false;
-    }
 }
