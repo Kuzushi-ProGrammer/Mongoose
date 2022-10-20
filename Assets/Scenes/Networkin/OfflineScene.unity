@@ -222,13 +222,14 @@ MonoBehaviour:
   networkAddress: localhost
   maxConnections: 100
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 80026215646498456, guid: e22e5b311ab8eaa42be5a33b5a5c18b4, type: 3}
-  autoCreatePlayer: 0
+  playerPrefab: {fileID: 6535155565887453268, guid: 3a5330aad6bb7ff40afb3adda9be988c, type: 3}
+  autoCreatePlayer: 1
   playerSpawnMethod: 0
-  spawnPrefabs: []
+  spawnPrefabs:
+  - {fileID: 9208945097906334299, guid: 104ac8639c32d2c4b81838f926744efe, type: 3}
   showRoomGUI: 1
   minPlayers: 1
-  roomPlayerPrefab: {fileID: 4815385728900704564, guid: 2a9d006b5892cd14a8dbcefc227f95d1, type: 3}
+  roomPlayerPrefab: {fileID: -1473208130015819020, guid: 3a5330aad6bb7ff40afb3adda9be988c, type: 3}
   RoomScene: Assets/Scenes/Networkin/LobbyScene.unity
   GameplayScene: Assets/Scenes/Networkin/NetworkMain.unity
   _allPlayersReady: 0

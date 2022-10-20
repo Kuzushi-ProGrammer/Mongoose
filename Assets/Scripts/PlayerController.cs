@@ -6,6 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using Mirror;
 using System.Xml.Serialization;
+using Mirror.Examples.Tanks;
 
 public class PlayerController : NetworkBehaviour
 {
@@ -22,6 +23,8 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] Sprite mongooseSprite;
     [SerializeField] Sprite racoonSprite;
     [SerializeField] Sprite debugSprite;
+
+    [SyncVar] Sprite currentPlayerSprite;
 
     public GameObject bulletPrefab;
 
@@ -167,22 +170,21 @@ public class PlayerController : NetworkBehaviour
     }
 
  // Bullet will only spawn properly on server with [Command] and only spawn properly on client with no command 
- //[Command]
-    void GunGoBoom()
+    [Command]
+    public void GunGoBoom()
     {
         if (canshoot)
         {
             GameObject newbullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, transform.rotation);
-
             Rigidbody2D BulletRB = newbullet.GetComponent<Rigidbody2D>();
             BulletRB.AddForce(bulletSpawnPoint.right * bulletSpeed, ForceMode2D.Impulse);
-
             NetworkServer.Spawn(newbullet);
 
             ammoDecrease();
 
         }
     }
+
     void ammoDecrease()
     {
         if (isLocalPlayer)
