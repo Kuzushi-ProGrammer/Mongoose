@@ -128,26 +128,23 @@ public class PlayerController : NetworkBehaviour
 
     public void SpeciesCheck()
     {
-        if (isLocalPlayer)
+        switch (species)
         {
-            switch (species)
-            {
-                case "mongoose":
-                    spriteRenderer.sprite = mongooseSprite;
-                    break;
+            case "mongoose":
+                spriteRenderer.sprite = mongooseSprite;
+                break;
 
-                case "disguised_mongoose":
-                    spriteRenderer.sprite = debugSprite;
-                    break;
+            case "disguised_mongoose":
+                spriteRenderer.sprite = debugSprite;
+                break;
 
-                case "racoon":
-                    spriteRenderer.sprite = racoonSprite;
-                    break;
+            case "racoon":
+                spriteRenderer.sprite = racoonSprite;
+                break;
 
-                default:
-                    spriteRenderer.sprite = debugSprite;
-                    break;
-            }
+            default:
+                spriteRenderer.sprite = debugSprite;
+                break;
         }
     }
 
@@ -187,8 +184,6 @@ public class PlayerController : NetworkBehaviour
 
     void ammoDecrease()
     {
-        if (isLocalPlayer)
-        {
             ammo = ammo - 1;
             Debug.Log("you have " + ammo);
             if (ammo == 0)
@@ -202,8 +197,6 @@ public class PlayerController : NetworkBehaviour
                     StartCoroutine(gunNoGoBoom());
                 }
             }
-            
-        }
     }
 
     IEnumerator gunNoGoBoom()
