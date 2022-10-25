@@ -27,7 +27,7 @@ public class SelectionMenuScript : NetworkBehaviour
         mongoose.SetActive(true);
         //something something change team to mongoose 
 
-        playerController.ChangeSpeciesToMongoose();
+        //playerController.ChangeSpeciesToMongoose();
     }
     
     public void ChangeToRacoon()
@@ -35,6 +35,6 @@ public class SelectionMenuScript : NetworkBehaviour
         mongoose.SetActive(false);
         racoon.SetActive(true);
 
-        playerController.ChangeSpeciesToRacoon();
+        //playerController.ChangeSpeciesToRacoon();
     }
 }

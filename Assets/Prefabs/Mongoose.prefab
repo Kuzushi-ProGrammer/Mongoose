@@ -183,6 +183,7 @@ MonoBehaviour:
   racoonSprite: {fileID: 21300000, guid: 33d34661e6aa6fe4683cc7c4a57b5cd6, type: 3}
   debugSprite: {fileID: 21300000, guid: 816be8341c2e00c48a0deff6fe49f98f, type: 3}
   bulletPrefab: {fileID: 8233897029462314480, guid: f9531ff7ca630814194c1f183ddaab2c, type: 3}
+  racoonPrefab: {fileID: 1176463142197230871, guid: a7b3117adee29eb46a8b7db6dc246ded, type: 3}
   species: 
 --- !u!114 &-4846267156517376780
 MonoBehaviour:

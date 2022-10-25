@@ -389,6 +389,8 @@ MonoBehaviour:
   _allPlayersReady: 0
   roomSlots: []
   clientIndex: 0
+  mongoosePrefab: {fileID: 0}
+  racoonPrefab: {fileID: 0}
 --- !u!4 &1748614530
 Transform:
   m_ObjectHideFlags: 0

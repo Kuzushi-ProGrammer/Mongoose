@@ -13,6 +13,7 @@ public class PlayerController : NetworkBehaviour
     Rigidbody2D PlayerRB;
     Rigidbody2D BulletRB;
     SpriteRenderer spriteRenderer;
+    NetworkRoomManager roomManager;
 
     public Vector2 playerPos;
 
@@ -20,11 +21,6 @@ public class PlayerController : NetworkBehaviour
     public Transform bulletSpawnPoint;
 
     [SerializeField] Sprite bullet;
-    [SerializeField] Sprite mongooseSprite;
-    [SerializeField] Sprite racoonSprite;
-    [SerializeField] Sprite debugSprite;
-
-    [SyncVar] Sprite currentPlayerSprite;
 
     public GameObject bulletPrefab;
 
@@ -52,7 +48,7 @@ public class PlayerController : NetworkBehaviour
     void Start()
     {
         PlayerRB = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -62,7 +58,7 @@ public class PlayerController : NetworkBehaviour
 
         PlayerRotation();
 
-        SpeciesCheck();
+        //SpeciesCheck();
     }
     //Player Rotation
     void PlayerRotation()
@@ -104,48 +100,8 @@ public class PlayerController : NetworkBehaviour
                 }
             }
 
-            if (canDisguise)
-            {
-
-            }
         }
 
-    }
-
-    //Species Changing
-    public void ChangeSpeciesToMongoose()
-    {
-        species = "mongoose";
-        canHide = false;
-        canDisguise = true;
-    }
-    public void ChangeSpeciesToRacoon()
-    {
-        species = "racoon";
-        canHide = true;
-        canDisguise = false;
-    }
-
-    public void SpeciesCheck()
-    {
-        switch (species)
-        {
-            case "mongoose":
-                spriteRenderer.sprite = mongooseSprite;
-                break;
-
-            case "disguised_mongoose":
-                spriteRenderer.sprite = debugSprite;
-                break;
-
-            case "racoon":
-                spriteRenderer.sprite = racoonSprite;
-                break;
-
-            default:
-                spriteRenderer.sprite = debugSprite;
-                break;
-        }
     }
 
     //Health
