@@ -14,23 +14,42 @@ public class PlayerController : MonoBehaviour
     public Vector2 playerPos;
     // public GameObject playerPrefab;
     public Transform playerSpawnPoint;
-  //  GameObject newPlayer;
+    //  GameObject newPlayer;
     //Gun stuff
+    public GameObject SKSPrefab;
+    public GameObject BigIronPrefab;
+    GameObject newGun;
+    public Transform SKSspawnPoint;
+    public Transform BigIronSpawnPoint;
+
     bool hasGun = true;
     public GameObject bulletPrefab;
+    public GameObject BigIronBulletPrefab;
     public Transform bulletSpawnPoint;
+    public Transform BIGIRONbulletSpawnPoint;
     public Sprite[] bullet;
+<<<<<<< Updated upstream
     int bulletSpeed = 0;
+=======
+    public Sprite[] BigIronBullet;
+    int bulletSpeed = 30;
+>>>>>>> Stashed changes
     Rigidbody2D BulletRB;
     float ammo = 30;
+    float BIGIRONammo = 6;
     bool gunHasAmmo = true;
-    float spareAmmo = 60;
+    bool BigIronHasAmmo = true;
+    float spareAmmo = 69;
+    float BIGIRONspareAmmo = 5;
     bool canshoot = true;
     bool fireCoolDown = true;
+    bool BigIron = true;
+    bool SKS = false;
+    bool canshootBIGIRON = true;
     // Start is called before the first frame update
     void Start()
     {
-       // newPlayer = Instantiate(playerPrefab, playerspawnpoint.transform, false);
+       newGun = Instantiate(BigIronPrefab, BigIronSpawnPoint.transform, false);
         PlayerRB = GetComponent<Rigidbody2D>();
     }
 
@@ -85,27 +104,45 @@ public class PlayerController : MonoBehaviour
             walkVelocity = 10f;
 
         }
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            switchGuns();
+        }
 
         if (hasGun)
         {
-            if (gunHasAmmo)
+            if (SKS)
             {
-                
-                if (Input.GetKeyDown(KeyCode.Mouse0))
+                if (gunHasAmmo)
                 {
-                    GunGoBoom();
-                }
-                if (Input.GetKey(KeyCode.Space))
-                {
-                    if (fireCoolDown == true)
+
+                    if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
                         GunGoBoom();
-                        fireCoolDown = false;
-                        StartCoroutine(fireRate());
+                    }
+                    if (Input.GetKey(KeyCode.Space))
+                    {
+                        if (fireCoolDown == true)
+                        {
+                            GunGoBoom();
+                            fireCoolDown = false;
+                            StartCoroutine(fireRate());
+                        }
                     }
                 }
             }
-        
+            if (BigIronHasAmmo)
+            {
+                if (BigIron)
+                {
+                    if (Input.GetKeyDown(KeyCode.Mouse0))
+                    {
+                        BigIronGoBoom();
+                        fireCoolDown = false;
+                        StartCoroutine(BIGIRONfireRate());
+                    }
+                }
+            }
         }
     }
     //Health
@@ -162,6 +199,33 @@ public class PlayerController : MonoBehaviour
         
 
     }
+    void BigIronGoBoom()
+    {
+        if (canshootBIGIRON)
+        {
+
+
+            GameObject newbullet = Instantiate(BigIronBulletPrefab, BIGIRONbulletSpawnPoint.position, transform.rotation);
+            Rigidbody2D BulletRB = newbullet.GetComponent<Rigidbody2D>();
+            BulletRB.AddForce(bulletSpawnPoint.right * bulletSpeed, ForceMode2D.Impulse);
+            BIGIRONammo = BIGIRONammo - 1;
+            Debug.Log("you have " + BIGIRONammo);
+            if (BIGIRONammo == 0)
+            {
+                BigIronHasAmmo = false;
+                Debug.Log("out of ammo");
+
+                if (BIGIRONspareAmmo > 0)
+                {
+                    canshootBIGIRON = false;
+                    StartCoroutine(BIGIRONNoGoBoom());
+                }
+            }
+
+        }
+
+
+    }
 
     IEnumerator gunNoGoBoom()
     {
@@ -175,10 +239,47 @@ public class PlayerController : MonoBehaviour
         Debug.Log("mags left"+spareAmmo);
         gunHasAmmo = true;
     }
+    IEnumerator BIGIRONNoGoBoom()
+    {
+        Debug.Log("reloading");
+        yield return new WaitForSeconds(6);
+        canshootBIGIRON = true;
+        BIGIRONammo = BIGIRONammo + 6;
+        BIGIRONspareAmmo = BIGIRONspareAmmo - 1;
+        Debug.Log(ammo);
+        Debug.Log("done reload");
+        Debug.Log("Reloads left" + BIGIRONspareAmmo);
+        BigIronHasAmmo = true;
+    }
     IEnumerator fireRate()
     {
         yield return new WaitForSeconds(0.1f);
         fireCoolDown = true;
         Debug.Log("Gun go daka daka");
+    }
+    IEnumerator BIGIRONfireRate()
+    {
+        yield return new WaitForSeconds(1f);
+        fireCoolDown = true;
+       
+    }
+    private void switchGuns()
+    {
+        if (BigIron == true) // switches gun to sks
+        {
+            SKS = true;
+            BigIron = false;
+           // Destroy (BigIronPrefab);
+            newGun = Instantiate(SKSPrefab, SKSspawnPoint.transform, false);
+            Debug.Log("SKS go boom");
+        }
+        else if (SKS == true) // switches gun to big iron
+        {     
+            SKS = false;
+            BigIron = true;
+             Destroy(SKSPrefab);
+            newGun = Instantiate(BigIronPrefab, BigIronSpawnPoint.transform, false);
+            Debug.Log("I have cleared leather");
+        }
     }
 }
