@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform bulletSpawnPoint;
     public Sprite[] bullet;
-    int bulletSpeed = 30;
+    int bulletSpeed = 0;
     Rigidbody2D BulletRB;
     float ammo = 30;
     bool gunHasAmmo = true;
@@ -111,12 +111,15 @@ public class PlayerController : MonoBehaviour
     //Health
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        health = health - 1;
-        Debug.Log("Sus -1 Health ");
-        if (health == 0)
+        if (collision.gameObject.layer == 3)
         {
-            Destroy(gameObject);
-            Debug.Log("I have fallen and can't get up");
+            health = health - 1;
+            Debug.Log("Sus -1 Health ");
+            if (health == 0)
+            {
+                Destroy(gameObject);
+                Debug.Log("I have fallen and can't get up");
+            }
         }
     }
 
