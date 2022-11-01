@@ -8,107 +8,109 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    HeldItem item;
+
     Rigidbody2D PlayerRB;
-    float walkVelocity = 10f;
-    float health = 3f;
+    Rigidbody2D BulletRB;
+
     public Vector2 playerPos;
-    // public GameObject playerPrefab;
+
     public Transform playerSpawnPoint;
-    //  GameObject newPlayer;
-    //Gun stuff
-    public GameObject SKSPrefab;
-    public GameObject BigIronPrefab;
-    GameObject newGun;
     public Transform SKSspawnPoint;
     public Transform BigIronSpawnPoint;
-
-    bool hasGun = true;
-    public GameObject bulletPrefab;
-    public GameObject BigIronBulletPrefab;
     public Transform bulletSpawnPoint;
     public Transform BIGIRONbulletSpawnPoint;
+
+    public GameObject SKSPrefab;
+    public GameObject BigIronPrefab;
+    public GameObject bulletPrefab;
+    public GameObject BigIronBulletPrefab;
+
     public Sprite[] bullet;
+    public Sprite[] BigIronBullet;
+
+    GameObject newGun;
+
+    bool hasGun = true;
+    bool canshoot = true;
+    bool canshootBIGIRON = true;
+    bool fireCoolDown = true;
+    bool gunHasAmmo = true;
+    bool BigIronHasAmmo = true;
+    bool BigIron = true;
+    bool SKS = false;
+
+    float walkVelocity = 10f;
+    float health = 3f;
+    float ammo = 30;
+    float BIGIRONammo = 6;
+    float spareAmmo = 69;
+    float BIGIRONspareAmmo = 5;
 
     int bulletSpeed = 30;
 
-    public Sprite[] BigIronBullet;
-    
-
-    Rigidbody2D BulletRB;
-    float ammo = 30;
-    float BIGIRONammo = 6;
-    bool gunHasAmmo = true;
-    bool BigIronHasAmmo = true;
-    float spareAmmo = 69;
-    float BIGIRONspareAmmo = 5;
-    bool canshoot = true;
-    bool fireCoolDown = true;
-    bool BigIron = true;
-    bool SKS = false;
-    bool canshootBIGIRON = true;
-    // Start is called before the first frame update
     void Start()
     {
-       newGun = Instantiate(BigIronPrefab, BigIronSpawnPoint.transform, false);
+        newGun = Instantiate(BigIronPrefab, BigIronSpawnPoint.transform, false);
         PlayerRB = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // playerPos = rb.position;
-       //  mousepos = Input.mousePosition;
-
+        // Player Rotation
         Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = 0;
         mousePos.x -= objectPos.x;
         mousePos.y -= objectPos.y;
 
-
-        //Vector2 playerDirection = mousePos - rb.transform.position;
         float lookAngle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, lookAngle));
-        // print(playerPos + "PLAYER");
 
-        if (Input.GetKey(KeyCode.W))
-        {
-            PlayerRB.velocity = new Vector2(0f, walkVelocity);
+        //Player Movement
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
 
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            PlayerRB.velocity = new Vector2(- walkVelocity,0f);
-
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            PlayerRB.velocity = new Vector2(0f,- walkVelocity);
-
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            PlayerRB.velocity = new Vector2(walkVelocity,0f);
-
-        }
-        if (Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.LeftShift))
-        {
-            walkVelocity = 20f;
-        }
-        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.LeftControl))
-        {
-            walkVelocity = 5f;
-        }
-        else
-        {
-            walkVelocity = 10f;
-
-        }
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             switchGuns();
         }
 
+        if (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Space))
+        {
+            if (gunHasAmmo)
+            {
+                switch (item)
+                {
+                    case HeldItem.None:
+                        Debug.Log("no weapon");
+                        break;
+
+                    case HeldItem.SKS:
+                        if (fireCoolDown == true)
+                        {
+                            GunGoBoom();
+                            fireCoolDown = false;
+                            StartCoroutine(fireRate());
+                        }
+                        break;
+
+                    case HeldItem.BigIron:
+                        if (fireCoolDown == true)
+                        {
+                            fireCoolDown = false;
+                            StartCoroutine(BIGIRONfireRate());
+                            BigIronGoBoom();
+                        }
+                        break;
+                    default:
+                        Debug.Log("defaulted");
+                        break;
+                }
+            }
+
+        }
+        /*
         if (hasGun)
         {
             if (SKS)
@@ -144,7 +146,9 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+        */
     }
+
     //Health
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -164,8 +168,6 @@ public class PlayerController : MonoBehaviour
     {
         if (canshoot)
         {
-            
-            
                 GameObject newbullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, transform.rotation);
                 Rigidbody2D BulletRB = newbullet.GetComponent<Rigidbody2D>();
                 BulletRB.AddForce(bulletSpawnPoint.right * bulletSpeed, ForceMode2D.Impulse);
@@ -180,18 +182,6 @@ public class PlayerController : MonoBehaviour
                     {
                         canshoot = false;
                         StartCoroutine(gunNoGoBoom());
-                        //reloadtimer += Time.deltaTime;
-                        /*
-                        if (reloaddelay >= reloadtimer)
-                        {
-                            ammo = ammo + 10;
-                            spareAmmo = spareAmmo - 1;
-                            Debug.Log("reloading");
-                            gunHasAmmo = true;
-                            reloadtimer = 0f;
-                        } */
-
-
                     }
                 }
             
@@ -267,19 +257,27 @@ public class PlayerController : MonoBehaviour
     {
         if (BigIron == true) // switches gun to sks
         {
+            item = HeldItem.SKS;
             SKS = true;
             BigIron = false;
-           // Destroy (BigIronPrefab);
             newGun = Instantiate(SKSPrefab, SKSspawnPoint.transform, false);
             Debug.Log("SKS go boom");
         }
         else if (SKS == true) // switches gun to big iron
-        {     
+        {
+            item = HeldItem.BigIron;
             SKS = false;
             BigIron = true;
-             Destroy(SKSPrefab);
+            Destroy(SKSPrefab);
             newGun = Instantiate(BigIronPrefab, BigIronSpawnPoint.transform, false);
             Debug.Log("I have cleared leather");
         }
     }
+}
+
+public enum HeldItem
+{
+    None, // 0
+    SKS, // 1
+    BigIron // 2
 }
