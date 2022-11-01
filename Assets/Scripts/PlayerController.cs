@@ -28,12 +28,12 @@ public class PlayerController : MonoBehaviour
     public Transform bulletSpawnPoint;
     public Transform BIGIRONbulletSpawnPoint;
     public Sprite[] bullet;
-<<<<<<< Updated upstream
-    int bulletSpeed = 0;
-=======
-    public Sprite[] BigIronBullet;
+
     int bulletSpeed = 30;
->>>>>>> Stashed changes
+
+    public Sprite[] BigIronBullet;
+    
+
     Rigidbody2D BulletRB;
     float ammo = 30;
     float BIGIRONammo = 6;
