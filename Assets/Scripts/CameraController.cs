@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 { 
-        public GameObject player;
-        public float cameraHeight = 20.0f;
+    public GameObject player;
+    Vector3 playerPos;
 
-        void Update()
-        {
-            Vector3 pos = player.transform.position;
-            pos.z += cameraHeight;
-            transform.position = pos;
-        }
+    void Update()
+    {
+        Vector3 playerPos = new Vector3(player.transform.position.x, player.transform.position.y, -10);
+        transform.position = playerPos;
+    }
     
 }

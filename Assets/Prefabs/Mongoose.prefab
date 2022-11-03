@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 80026215646498463}
   - component: {fileID: 80026215646498462}
+  - component: {fileID: 80026215646498461}
   - component: {fileID: 80026215646498460}
   - component: {fileID: 80026215646498457}
-  - component: {fileID: 80026215646498461}
   m_Layer: 0
   m_Name: Mongoose
   m_TagString: Untagged
@@ -92,6 +92,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &80026215646498461
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80026215646498456}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.29480535
 --- !u!50 &80026215646498460
 Rigidbody2D:
   serializedVersion: 4
@@ -127,32 +143,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPos: {x: 0, y: 0}
   playerSpawnPoint: {fileID: 0}
-  SKSPrefab: {fileID: 8719021813734931350, guid: 20f7e72cac1f30542be805259b334815, type: 3}
-  BigIronPrefab: {fileID: 1973525908624837723, guid: 1a7c76b0a03861343a7a3071624af206, type: 3}
   SKSspawnPoint: {fileID: 2122684608384188850}
   BigIronSpawnPoint: {fileID: 7178107083084723979}
-  bulletPrefab: {fileID: 8233897029462314480, guid: f9531ff7ca630814194c1f183ddaab2c, type: 3}
-  BigIronBulletPrefab: {fileID: 3496823707780609424, guid: 1705a5305e007bc469835bb6060da255, type: 3}
   bulletSpawnPoint: {fileID: 1169174616673881516}
   BIGIRONbulletSpawnPoint: {fileID: 769847495965180177}
+  SKSPrefab: {fileID: 8719021813734931350, guid: 20f7e72cac1f30542be805259b334815, type: 3}
+  BigIronPrefab: {fileID: 1973525908624837723, guid: 1a7c76b0a03861343a7a3071624af206, type: 3}
+  bulletPrefab: {fileID: 8233897029462314480, guid: f9531ff7ca630814194c1f183ddaab2c, type: 3}
+  BigIronBulletPrefab: {fileID: 3496823707780609424, guid: 1705a5305e007bc469835bb6060da255, type: 3}
   bullet: []
   BigIronBullet: []
---- !u!58 &80026215646498461
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 80026215646498456}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.29480535
 --- !u!1 &1565645507049039892
 GameObject:
   m_ObjectHideFlags: 0

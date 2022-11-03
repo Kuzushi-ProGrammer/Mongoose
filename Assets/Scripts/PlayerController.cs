@@ -2,6 +2,7 @@
 
 
 using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 
@@ -29,7 +30,10 @@ public class PlayerController : MonoBehaviour
     public Sprite[] bullet;
     public Sprite[] BigIronBullet;
 
+    [SerializeField] GameObject uiObject;
     GameObject newGun;
+
+    public List<string> playerInventory = new();
 
     bool canshoot = true;
     bool fireCoolDown = true;
@@ -54,6 +58,15 @@ public class PlayerController : MonoBehaviour
     {
         PlayerRotation();
         PlayerMovement();
+
+        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
+        {
+
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
+        {
+
+        }
 
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
@@ -117,6 +130,12 @@ public class PlayerController : MonoBehaviour
         transform.position = transform.position + movement;
     }
 
+    public void AddItemToInventory(string item)
+    {
+        playerInventory.Add(item);
+        Debug.Log(playerInventory[0]);
+        uiObject.GetComponent<InventoryUI>().UIupdate(item);
+    }
 
     //Health
     private void OnTriggerEnter2D(Collider2D collision)
@@ -180,46 +199,38 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator GunNoGoBoom(float t)
     {
+        yield return new WaitForSeconds(t);
+
         switch (item)
         {
             case HeldItem.SKS:
-                yield return new WaitForSeconds(t);
                 SKSammo += 30;
                 SKSspareAmmo--;
+                gunHasAmmo = true;
+                canshoot = true;
+
                 Debug.Log(SKSammo);
                 Debug.Log("done reload");
                 Debug.Log("mags left" + SKSspareAmmo);
-                gunHasAmmo = true;
-                canshoot = true;
                 break;
 
             case HeldItem.BigIron:
-                yield return new WaitForSeconds(t);
                 BIGIRONammo += 6;
                 BIGIRONspareAmmo--;
+                gunHasAmmo = true;
+                canshoot = true;
+
                 Debug.Log(BIGIRONammo);
                 Debug.Log("done reload");
                 Debug.Log("Reloads left" + BIGIRONspareAmmo);
-                gunHasAmmo = true;
-                canshoot = true;
                 break;
         }
     }
     IEnumerator FireRate(float t)
     {
-        switch (item)
-        {
-            case HeldItem.SKS:
-                yield return new WaitForSeconds(t);
-                fireCoolDown = true;
-                Debug.Log("Gun go daka daka");
-                break;
-
-            case HeldItem.BigIron:
-                yield return new WaitForSeconds(t);
-                fireCoolDown = true;
-                break;
-        }
+        yield return new WaitForSeconds(t);
+        fireCoolDown = true;
+        Debug.Log("Gun go daka daka");
     }
   
     private void switchGuns()

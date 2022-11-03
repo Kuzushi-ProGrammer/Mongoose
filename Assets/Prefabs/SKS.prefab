@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8719021813734931339}
   - component: {fileID: 8719021813734931336}
   m_Layer: 0
-  m_Name: SKS sprite
+  m_Name: SKS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
