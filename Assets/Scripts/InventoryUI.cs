@@ -29,31 +29,44 @@ public class InventoryUI : MonoBehaviour
         image2 = slot2.GetComponent<Image>();
 
     }
-
-    /* If player inventory first
-     * 
-     * 
-     * 
-     */
-
-    public void UIupdate(string s)
+    public void UIupdate(string item, int slot)
     {
-        switch (s)
+        switch (slot)
         {
-            case "None":
-                image1.sprite = none;
+            case 0:
+                switch (item)
+                {
+                    case "None":
+                        image1.sprite = none;
+                        break;
+
+                    case "SKS":
+                        image1.sprite = sks;
+                        break;
+
+                    case "Big_Iron":
+                        image1.sprite = bigIron;
+                        break;
+                }
                 break;
 
-            case "SKS":
-                image1.sprite = sks; 
-                break;
+            case 1:
+                switch (item)
+                {
+                    case "None":
+                        image2.sprite = none;
+                        break;
 
-            case "Big_Iron":
-                image1.sprite = bigIron;
+                    case "SKS":
+                        image2.sprite = sks;
+                        break;
+
+                    case "Big_Iron":
+                        image2.sprite = bigIron;
+                        break;
+                }
                 break;
         }
- 
-
     }
 
     public void ChangeActiveSlot(int slot)

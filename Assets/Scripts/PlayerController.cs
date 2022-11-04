@@ -4,6 +4,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.Tracing;
 using UnityEngine;
 
 
@@ -34,7 +35,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject uiObject;
     GameObject newGun;
 
-    public List<string> playerInventory = new();
+    public List<string> playerInventory = new() {"none", "none"};
 
     bool canshoot = true;
     bool fireCoolDown = true;
@@ -47,6 +48,7 @@ public class PlayerController : MonoBehaviour
     float BIGIRONspareAmmo = 5;
 
     int bulletSpeed = 30;
+    int currentActiveSlot;
 
     void Start()
     {
@@ -64,6 +66,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
         {
             inventoryUI.ChangeActiveSlot(1);
+            Debug.Log(playerInventory[0]);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
         {
@@ -134,8 +137,9 @@ public class PlayerController : MonoBehaviour
 
     public void AddItemToInventory(string item)
     {
-        playerInventory.Add(item);
-        inventoryUI.UIupdate(item);
+        playerInventory.RemoveAt(0);
+        playerInventory.Insert(0, item);
+        inventoryUI.UIupdate(item, 0);
     }
 
     //Health
