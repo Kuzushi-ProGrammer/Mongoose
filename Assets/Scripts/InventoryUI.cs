@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
+    PlayerController playerController;
+
     [SerializeField] GameObject playerObject;
     [SerializeField] GameObject slot1;
     [SerializeField] GameObject slot2;
+    [SerializeField] GameObject slot1BG;
+    [SerializeField] GameObject slot2BG;
 
     [SerializeField] Sprite none;
     [SerializeField] Sprite sks;
@@ -16,13 +21,23 @@ public class InventoryUI : MonoBehaviour
     Image image1;
     Image image2;
 
-    public void UIupdate(string s)
+    private void Awake()
     {
         PlayerController playerController = playerObject.GetComponent<PlayerController>();
 
         image1 = slot1.GetComponent<Image>();
         image2 = slot2.GetComponent<Image>();
 
+    }
+
+    /* If player inventory first
+     * 
+     * 
+     * 
+     */
+
+    public void UIupdate(string s)
+    {
         switch (s)
         {
             case "None":
@@ -39,5 +54,26 @@ public class InventoryUI : MonoBehaviour
         }
  
 
+    }
+
+    public void ChangeActiveSlot(int slot)
+    {
+        switch (slot)
+        {
+            case (0):
+                slot1BG.SetActive(false);
+                slot2BG.SetActive(false);
+                break;
+
+            case (1):
+                slot1BG.SetActive(true);
+                slot2BG.SetActive(false);
+                break;
+
+            case (2):
+                slot1BG.SetActive(false);
+                slot2BG.SetActive(true);
+                break;
+        }
     }
 }

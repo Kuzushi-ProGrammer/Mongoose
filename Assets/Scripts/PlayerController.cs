@@ -10,6 +10,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     HeldItem item;
+    InventoryUI inventoryUI;
 
     Rigidbody2D PlayerRB;
     Rigidbody2D BulletRB;
@@ -52,6 +53,7 @@ public class PlayerController : MonoBehaviour
         newGun = Instantiate(BigIronPrefab, BigIronSpawnPoint.transform, false);
         PlayerRB = GetComponent<Rigidbody2D>();
         item = HeldItem.BigIron;
+        inventoryUI = uiObject.GetComponent<InventoryUI>();
     }
 
     void Update()
@@ -61,16 +63,16 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
         {
-
+            inventoryUI.ChangeActiveSlot(1);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
         {
-
+            inventoryUI.ChangeActiveSlot(2);
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            switchGuns();
+            switchGuns(); // change to switch inventory slots
         }
 
         if (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Space))
@@ -133,8 +135,7 @@ public class PlayerController : MonoBehaviour
     public void AddItemToInventory(string item)
     {
         playerInventory.Add(item);
-        Debug.Log(playerInventory[0]);
-        uiObject.GetComponent<InventoryUI>().UIupdate(item);
+        inventoryUI.UIupdate(item);
     }
 
     //Health
