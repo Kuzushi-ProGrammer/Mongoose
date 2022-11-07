@@ -12,8 +12,22 @@ public class CollectibleScript : MonoBehaviour
         {
             Debug.Log("Player collided with collectible");
             playerController = collision.GetComponent<PlayerController>();
-            playerController.AddItemToInventory("SKS");
-            Destroy(gameObject);
+
+            Debug.Log(gameObject.name);
+
+            switch (gameObject.name)
+            {
+                case ("BigIronScene"):
+                    playerController.AddItemToInventory("Big_Iron");
+                    Destroy(gameObject);
+                    break;
+
+                case ("SKS"):
+                    playerController.AddItemToInventory("SKS");
+                    Destroy(gameObject);
+                    break;
+            }
+
         }
     }
 

@@ -18,28 +18,29 @@ public class PlayerController : MonoBehaviour
 
     public Vector2 playerPos;
 
-    public Transform playerSpawnPoint;
-    public Transform SKSspawnPoint;
-    public Transform BigIronSpawnPoint;
-    public Transform bulletSpawnPoint;
-    public Transform BIGIRONbulletSpawnPoint;
+    [SerializeField] Transform playerSpawnPoint;
+    [SerializeField] Transform SKSspawnPoint;
+    [SerializeField] Transform BigIronSpawnPoint;
+    [SerializeField] Transform bulletSpawnPoint;
+    [SerializeField] Transform BIGIRONbulletSpawnPoint;
 
-    public GameObject SKSPrefab;
-    public GameObject BigIronPrefab;
-    public GameObject bulletPrefab;
-    public GameObject BigIronBulletPrefab;
-
-    public Sprite[] bullet;
-    public Sprite[] BigIronBullet;
-
+    [SerializeField] GameObject SKSPrefab;
+    [SerializeField] GameObject BigIronPrefab;
+    [SerializeField] GameObject bulletPrefab;
+    [SerializeField] GameObject BigIronBulletPrefab;
     [SerializeField] GameObject uiObject;
+
+    [SerializeField] Sprite bullet;
+    [SerializeField] Sprite BigIronBullet;
+
     GameObject newGun;
 
-    public List<string> playerInventory = new() {"none", "none"};
+    public List<string> playerInventory = new();
 
     bool canshoot = true;
     bool fireCoolDown = true;
     bool gunHasAmmo = true;
+    bool inventoryFull = false;
 
     float health = 3f;
     float SKSammo = 30;
@@ -56,6 +57,9 @@ public class PlayerController : MonoBehaviour
         PlayerRB = GetComponent<Rigidbody2D>();
         item = HeldItem.BigIron;
         inventoryUI = uiObject.GetComponent<InventoryUI>();
+
+        playerInventory.Add("none");
+        playerInventory.Add("none");
     }
 
     void Update()
@@ -66,11 +70,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
         {
             inventoryUI.ChangeActiveSlot(1);
-            Debug.Log(playerInventory[0]);
+            currentActiveSlot = 0;
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
         {
             inventoryUI.ChangeActiveSlot(2);
+            currentActiveSlot = 1;
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -93,7 +98,7 @@ public class PlayerController : MonoBehaviour
                         {
                             GunGoBoom();
                             fireCoolDown = false;
-                            StartCoroutine(FireRate(0.1f));
+                            StartCoroutine(FireRate(0.5f));
                         }
                         break;
 
@@ -137,9 +142,22 @@ public class PlayerController : MonoBehaviour
 
     public void AddItemToInventory(string item)
     {
-        playerInventory.RemoveAt(0);
-        playerInventory.Insert(0, item);
-        inventoryUI.UIupdate(item, 0);
+        if (playerInventory[0] == "none")
+        {
+            playerInventory.RemoveAt(0);
+            playerInventory.Insert(0, item);
+            inventoryUI.UIupdate(item, 0);
+        }
+        else if (playerInventory[1] == "none")
+        {
+            playerInventory.RemoveAt(1);
+            playerInventory.Insert(1, item);
+            inventoryUI.UIupdate(item, 1);
+        }
+        else
+        {
+            inventoryFull = true;
+        }
     }
 
     //Health

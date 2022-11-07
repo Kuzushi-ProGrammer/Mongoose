@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4200291425292545081}
   - component: {fileID: 3864138740582221633}
   m_Layer: 0
-  m_Name: Big Iron complete (colt SA) 1
+  m_Name: BigIronPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973525908624837723}
   m_LocalRotation: {x: -0, y: -0, z: -0.70696765, w: 0.7072459}
-  m_LocalPosition: {x: 0.635, y: -0.054, z: 1}
+  m_LocalPosition: {x: 0.635, y: -0.054, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -93,10 +93,10 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973525908624837723}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.5228087, y: 0.3997953}
