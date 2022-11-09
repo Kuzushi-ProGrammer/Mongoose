@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform BigIronSpawnPoint;
     [SerializeField] Transform bulletSpawnPoint;
     [SerializeField] Transform BIGIRONbulletSpawnPoint;
+    [SerializeField] Transform droppedItemSpawnPoint;
 
     [SerializeField] GameObject SKSPrefab;
     [SerializeField] GameObject BigIronPrefab;
@@ -30,17 +31,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject BigIronBulletPrefab;
     [SerializeField] GameObject uiObject;
 
-    [SerializeField] Sprite bullet;
-    [SerializeField] Sprite BigIronBullet;
-
     GameObject newGun;
 
     public List<string> playerInventory = new();
 
+    public bool canPickupItems = true;
     bool canshoot = true;
     bool fireCoolDown = true;
     bool gunHasAmmo = true;
-    bool inventoryFull = false;
 
     float health = 3f;
     float SKSammo = 30;
@@ -67,15 +65,42 @@ public class PlayerController : MonoBehaviour
         PlayerRotation();
         PlayerMovement();
 
+        if (playerInventory.Count > 2)
+        {
+            Debug.Log(playerInventory.Count);
+            Debug.LogError("Bigger than required");
+        }
+
         if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
         {
-            inventoryUI.ChangeActiveSlot(1);
-            currentActiveSlot = 0;
+            if (currentActiveSlot == 1)
+            {
+                currentActiveSlot = 0;
+                inventoryUI.ChangeActiveSlot(0);
+            }
+            else
+            {
+                inventoryUI.ChangeActiveSlot(1);
+                currentActiveSlot = 1;
+            }
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
         {
-            inventoryUI.ChangeActiveSlot(2);
-            currentActiveSlot = 1;
+            if (currentActiveSlot == 2)
+            {
+                currentActiveSlot = 0;
+                inventoryUI.ChangeActiveSlot(0);
+            }
+            else
+            {
+                inventoryUI.ChangeActiveSlot(2);
+                currentActiveSlot = 2;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            RemoveItemFromInventory(currentActiveSlot);
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -142,22 +167,104 @@ public class PlayerController : MonoBehaviour
 
     public void AddItemToInventory(string item)
     {
+        ListCheck("1st");
+
         if (playerInventory[0] == "none")
         {
+            Debug.Log("player inv 1 = none, adding item to slot 1");
             playerInventory.RemoveAt(0);
             playerInventory.Insert(0, item);
             inventoryUI.UIupdate(item, 0);
         }
         else if (playerInventory[1] == "none")
         {
+            Debug.Log("player inv 2 = none, adding item to slot 2");
             playerInventory.RemoveAt(1);
             playerInventory.Insert(1, item);
             inventoryUI.UIupdate(item, 1);
         }
-        else
+
+        ListCheck("2nd");
+    }
+
+    void RemoveItemFromInventory(int slot)
+    {
+        switch (slot)
         {
-            inventoryFull = true;
+            case 0:
+                Debug.Log("no slot selected");
+                break;
+
+            case (1):
+
+                Debug.Log("dropping item in slot 1: " + playerInventory[0].ToString());
+
+                switch (playerInventory[0].ToString())
+                {
+                    case "SKS":
+                        Instantiate(SKSPrefab, gameObject.transform.position, Quaternion.identity);
+                        StartCoroutine(dropDelay());
+                        break;
+
+                    case "Big_Iron":
+                        Instantiate(BigIronPrefab, gameObject.transform.position, Quaternion.identity);
+                        StartCoroutine(dropDelay());
+                        break;
+                }
+
+                playerInventory.RemoveAt(0);
+                playerInventory.Insert(0, "none");
+                inventoryUI.UIupdate("none", 0);
+                break;
+
+            case (2):
+
+                Debug.Log("dropping item in slot 2: " + playerInventory[1].ToString());
+
+                switch (playerInventory[1].ToString())
+                {
+                    case "SKS":
+                        Instantiate(SKSPrefab, gameObject.transform.position, Quaternion.identity);
+                        StartCoroutine(dropDelay());
+                        break;
+
+                    case "Big_Iron":
+                        Instantiate(BigIronPrefab, gameObject.transform.position, Quaternion.identity);
+                        StartCoroutine(dropDelay());
+                        break;
+                }
+
+                playerInventory.RemoveAt(1);
+                playerInventory.Insert(1, "none");
+                inventoryUI.UIupdate("none", 1);
+                break;
         }
+    }
+
+    IEnumerator dropDelay()
+    {
+        canPickupItems = false;
+        yield return new WaitForSeconds(0.1f);
+        canPickupItems = true;
+    }
+
+    void ListCheck(string n) // debug
+    {
+        // Log each element one at a time
+        foreach (var item in playerInventory)
+        {
+            Debug.Log(item.ToString());
+        }
+
+        // Concatenate all items into a single string
+        // NOTE:  If the List is long, this would be more efficient with a
+        // StringBuilder
+        string result = "List contents: ";
+        foreach (var item in playerInventory)
+        {
+            result += item.ToString() + ", ";
+        }
+        Debug.Log(n + " " + result);
     }
 
     //Health
