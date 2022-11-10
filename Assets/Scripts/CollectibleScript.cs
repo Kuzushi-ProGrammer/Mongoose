@@ -6,7 +6,6 @@ using UnityEngine;
 public class CollectibleScript : MonoBehaviour
 {
     PlayerController playerController;
-    bool inventoryFull;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -28,7 +27,7 @@ public class CollectibleScript : MonoBehaviour
                         playerController.AddItemToInventory("SKS");
                         Destroy(gameObject);
                     }
-                    else if (gameObject.name == "BigIronScene" || gameObject.name == "BigIronPlayer(Clone)")
+                    else if (gameObject.name == "BigIronScene" || gameObject.name == "BigIronScene(Clone)")
                     {
                         playerController.AddItemToInventory("Big_Iron");
                         Destroy(gameObject);

@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject BigIronBulletPrefab;
     [SerializeField] GameObject uiObject;
 
+    [SerializeField] GameObject bigIronDropable;
+
     GameObject newGun;
 
     public List<string> playerInventory = new();
@@ -60,17 +62,16 @@ public class PlayerController : MonoBehaviour
         playerInventory.Add("none");
     }
 
-    void Update()
+    private void FixedUpdate()
     {
         PlayerRotation();
         PlayerMovement();
+    }
 
-        if (playerInventory.Count > 2)
-        {
-            Debug.Log(playerInventory.Count);
-            Debug.LogError("Bigger than required");
-        }
+    // make gun swap execute on keypress instead of on fire
 
+    void Update()
+    {
         if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
         {
             if (currentActiveSlot == 1)
@@ -108,8 +109,24 @@ public class PlayerController : MonoBehaviour
             switchGuns(); // change to switch inventory slots
         }
 
-        if (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Space)) // shoot gun
         {
+
+            switch (currentActiveSlot)
+            {
+                case 0: // none selected
+                    Debug.Log("No gun");
+                    break;
+
+                case 1: // slot 1
+                    ActivateHeldItem(0);
+                    break;
+
+                case 2: // slot 2
+                    ActivateHeldItem(1);
+                    break;
+            }
+
             if (gunHasAmmo && canshoot)
             {
                 switch (item)
@@ -144,6 +161,36 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /*
+    pass through number in function
+    testfunc(n);
+
+    void testfunc(int n)
+    {
+          switch (playerInventory[n])
+            {
+                case "SKS"
+                    break;
+                case "Big_Iron"
+                    break;
+            }
+    }
+    */
+
+    void ActivateHeldItem(int n)
+    {
+        switch (playerInventory[n])
+        {
+            case "SKS":
+                Debug.Log("Shooting SKS");
+                break;
+
+            case "Big_Iron":
+                Debug.Log("Shooting Big Iron");
+                break;
+        }
+    }
+
     void PlayerRotation()
     {
         Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
@@ -161,7 +208,7 @@ public class PlayerController : MonoBehaviour
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(moveHorizontal * 0.1f, moveVertical * 0.1f, 0);
+        Vector3 movement = new Vector3(moveHorizontal, moveVertical, 0);
         transform.position = transform.position + movement;
     }
 
@@ -207,7 +254,7 @@ public class PlayerController : MonoBehaviour
                         break;
 
                     case "Big_Iron":
-                        Instantiate(BigIronPrefab, gameObject.transform.position, Quaternion.identity);
+                        Instantiate(bigIronDropable, gameObject.transform.position, Quaternion.identity);
                         StartCoroutine(dropDelay());
                         break;
                 }
@@ -229,7 +276,7 @@ public class PlayerController : MonoBehaviour
                         break;
 
                     case "Big_Iron":
-                        Instantiate(BigIronPrefab, gameObject.transform.position, Quaternion.identity);
+                        Instantiate(bigIronDropable, gameObject.transform.position, Quaternion.identity);
                         StartCoroutine(dropDelay());
                         break;
                 }
