@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build.Player;
 using UnityEngine;
 
 public class CollectibleScript : MonoBehaviour
@@ -15,19 +16,24 @@ public class CollectibleScript : MonoBehaviour
 
             Debug.Log(gameObject.name);
 
-            switch (gameObject.name)
+            if (playerController.canPickupItems)
             {
-                case ("BigIronScene"):
-                    playerController.AddItemToInventory("Big_Iron");
-                    Destroy(gameObject);
-                    break;
+                if (playerController.playerInventory[0] == "none" || playerController.playerInventory[1] == "none")
+                {
+                    Debug.Log("inventory not full (collectiblescript)");
 
-                case ("SKS"):
-                    playerController.AddItemToInventory("SKS");
-                    Destroy(gameObject);
-                    break;
+                    if (gameObject.name == "SKS" || gameObject.name == "SKS(Clone)")
+                    {
+                        playerController.AddItemToInventory("SKS");
+                        Destroy(gameObject);
+                    }
+                    else if (gameObject.name == "BigIronScene" || gameObject.name == "BigIronScene(Clone)")
+                    {
+                        playerController.AddItemToInventory("Big_Iron");
+                        Destroy(gameObject);
+                    }
+                }
             }
-
         }
     }
 

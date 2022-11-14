@@ -36,7 +36,7 @@ public class InventoryUI : MonoBehaviour
             case 0:
                 switch (item)
                 {
-                    case "None":
+                    case "none":
                         image1.sprite = none;
                         break;
 
@@ -53,7 +53,7 @@ public class InventoryUI : MonoBehaviour
             case 1:
                 switch (item)
                 {
-                    case "None":
+                    case "none":
                         image2.sprite = none;
                         break;
 
