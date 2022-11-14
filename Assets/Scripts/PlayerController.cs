@@ -11,31 +11,19 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     InventoryUI inventoryUI;
-
-    Rigidbody2D PlayerRB;
     Rigidbody2D BulletRB;
 
-    public Vector2 playerPos;
-
-    [SerializeField] Transform playerSpawnPoint;
-    [SerializeField] Transform SKSspawnPoint;
-    [SerializeField] Transform BigIronSpawnPoint;
     [SerializeField] Transform bulletSpawnPoint;
     [SerializeField] Transform BIGIRONbulletSpawnPoint;
-    [SerializeField] Transform droppedItemSpawnPoint;
 
     [SerializeField] GameObject SKSPrefab;
     [SerializeField] GameObject BigIronPrefab;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] GameObject BigIronBulletPrefab;
     [SerializeField] GameObject uiObject;
-
     [SerializeField] GameObject bigIronDropable;
-
-    [SerializeField] GameObject SKS;
-    [SerializeField] GameObject BigIron;
-
-    GameObject newGun;
+    [SerializeField] GameObject SKSGameObject;
+    [SerializeField] GameObject BigIronGameObject;
 
     public List<string> playerInventory = new();
 
@@ -55,7 +43,6 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        PlayerRB = GetComponent<Rigidbody2D>();
         inventoryUI = uiObject.GetComponent<InventoryUI>();
 
         playerInventory.Add("none");
@@ -112,13 +99,13 @@ public class PlayerController : MonoBehaviour
         {
             if (gunHasAmmo && canshoot && fireCoolDown)
             {
-                if (SKS.activeSelf)
+                if (SKSGameObject.activeSelf)
                 {
                     GunGoBoom("SKS");
                     fireCoolDown = false;
                     StartCoroutine(FireRate(0.1f));
                 }
-                else if (BigIron.activeSelf)
+                else if (BigIronGameObject.activeSelf)
                 {
                     GunGoBoom("Big_Iron");
                     fireCoolDown = false;
@@ -136,22 +123,22 @@ public class PlayerController : MonoBehaviour
             {
                 case "SKS":
                     Debug.Log("Holding SKS");
-                    BigIron.SetActive(false);
-                    SKS.SetActive(true);
+                    BigIronGameObject.SetActive(false);
+                    SKSGameObject.SetActive(true);
                     break;
 
                 case "Big_Iron":
                     Debug.Log("Holding Big Iron");
-                    BigIron.SetActive(true);
-                    SKS.SetActive(false);
+                    BigIronGameObject.SetActive(true);
+                    SKSGameObject.SetActive(false);
                     break;
             }
         }
         else // 3 is null slot
         {
             Debug.Log("Holding Nothing");
-            BigIron.SetActive(false);
-            SKS.SetActive(false);
+            BigIronGameObject.SetActive(false);
+            SKSGameObject.SetActive(false);
         }
     }
 
@@ -214,11 +201,13 @@ public class PlayerController : MonoBehaviour
                 {
                     case "SKS":
                         Instantiate(SKSPrefab, gameObject.transform.position, Quaternion.identity);
+                        SKSGameObject.SetActive(false);
                         StartCoroutine(dropDelay());
                         break;
 
                     case "Big_Iron":
                         Instantiate(bigIronDropable, gameObject.transform.position, Quaternion.identity);
+                        BigIronGameObject.SetActive(false);
                         StartCoroutine(dropDelay());
                         break;
                 }
@@ -236,11 +225,13 @@ public class PlayerController : MonoBehaviour
                 {
                     case "SKS":
                         Instantiate(SKSPrefab, gameObject.transform.position, Quaternion.identity);
+                        SKSGameObject.SetActive(false);
                         StartCoroutine(dropDelay());
                         break;
 
                     case "Big_Iron":
                         Instantiate(bigIronDropable, gameObject.transform.position, Quaternion.identity);
+                        BigIronGameObject.SetActive(false);
                         StartCoroutine(dropDelay());
                         break;
                 }
