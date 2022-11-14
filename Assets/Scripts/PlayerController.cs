@@ -10,7 +10,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    HeldItem item;
     InventoryUI inventoryUI;
 
     Rigidbody2D PlayerRB;
@@ -33,6 +32,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] GameObject bigIronDropable;
 
+    [SerializeField] GameObject SKS;
+    [SerializeField] GameObject BigIron;
+
     GameObject newGun;
 
     public List<string> playerInventory = new();
@@ -53,9 +55,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        newGun = Instantiate(BigIronPrefab, BigIronSpawnPoint.transform, false);
         PlayerRB = GetComponent<Rigidbody2D>();
-        item = HeldItem.BigIron;
         inventoryUI = uiObject.GetComponent<InventoryUI>();
 
         playerInventory.Add("none");
@@ -78,11 +78,13 @@ public class PlayerController : MonoBehaviour
             {
                 currentActiveSlot = 0;
                 inventoryUI.ChangeActiveSlot(0);
+                ActivateHeldItem(3);
             }
             else
             {
                 inventoryUI.ChangeActiveSlot(1);
                 currentActiveSlot = 1;
+                ActivateHeldItem(0);
             }
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
@@ -91,11 +93,13 @@ public class PlayerController : MonoBehaviour
             {
                 currentActiveSlot = 0;
                 inventoryUI.ChangeActiveSlot(0);
+                ActivateHeldItem(3);
             }
             else
             {
                 inventoryUI.ChangeActiveSlot(2);
                 currentActiveSlot = 2;
+                ActivateHeldItem(1);
             }
         }
 
@@ -104,79 +108,50 @@ public class PlayerController : MonoBehaviour
             RemoveItemFromInventory(currentActiveSlot);
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            switchGuns(); // change to switch inventory slots
-        }
-
         if (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Space)) // shoot gun
         {
-
-            switch (currentActiveSlot)
+            if (gunHasAmmo && canshoot && fireCoolDown)
             {
-                case 0: // none selected
-                    Debug.Log("No gun");
-                    break;
-
-                case 1: // slot 1
-                    ActivateHeldItem(0);
-                    break;
-
-                case 2: // slot 2
-                    ActivateHeldItem(1);
-                    break;
-            }
-
-            if (gunHasAmmo && canshoot)
-            {
-                switch (item)
+                if (SKS.activeSelf)
                 {
-                    case HeldItem.None:
-                        Debug.Log("no weapon");
-                        break;
-
-                    case HeldItem.SKS:
-                        if (fireCoolDown == true)
-                        {
-                            GunGoBoom();
-                            fireCoolDown = false;
-                            StartCoroutine(FireRate(0.5f));
-                        }
-                        break;
-
-                    case HeldItem.BigIron:
-                        if (fireCoolDown == true)
-                        {
-                            GunGoBoom();
-                            fireCoolDown = false;
-                            StartCoroutine(FireRate(1f));
-                        }
-                        break;
-                    default:
-                        Debug.Log("defaulted");
-                        break;
+                    GunGoBoom("SKS");
+                    fireCoolDown = false;
+                    StartCoroutine(FireRate(0.1f));
+                }
+                else if (BigIron.activeSelf)
+                {
+                    GunGoBoom("Big_Iron");
+                    fireCoolDown = false;
+                    StartCoroutine(FireRate(1f));
                 }
             }
-
         }
     }
 
-    /*
-    pass through number in function
-    testfunc(n);
-    */
-
     void ActivateHeldItem(int n)
-    {
-        switch (playerInventory[n])
+    {   
+        if (n != 3)
         {
-            case "SKS":
-                Debug.Log("Shooting SKS");
-                break;
+            switch (playerInventory[n])
+            {
+                case "SKS":
+                    Debug.Log("Holding SKS");
+                    BigIron.SetActive(false);
+                    SKS.SetActive(true);
+                    break;
 
-            case "Big_Iron":
-                Debug.Log("Shooting Big Iron");
-                break;
+                case "Big_Iron":
+                    Debug.Log("Holding Big Iron");
+                    BigIron.SetActive(true);
+                    SKS.SetActive(false);
+                    break;
+            }
+        }
+        else // 3 is null slot
+        {
+            Debug.Log("Holding Nothing");
+            BigIron.SetActive(false);
+            SKS.SetActive(false);
         }
     }
 
@@ -318,13 +293,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void GunGoBoom()
+    void GunGoBoom(string gun)
     {
         GameObject newbullet;
 
-        switch (item)
+        switch (gun)
         {
-            case HeldItem.SKS:
+            case "SKS":
                 newbullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, transform.rotation);
                 BulletRB = newbullet.GetComponent<Rigidbody2D>();
                 BulletRB.AddForce(bulletSpawnPoint.right * bulletSpeed, ForceMode2D.Impulse);
@@ -338,12 +313,12 @@ public class PlayerController : MonoBehaviour
                     if (SKSspareAmmo > 0)
                     {
                         canshoot = false;
-                        StartCoroutine(GunNoGoBoom(3f));
+                        StartCoroutine(GunNoGoBoom(3f, "SKS"));
                     }
                 }
                 break;
 
-            case HeldItem.BigIron:
+            case "Big_Iron":
                 newbullet = Instantiate(BigIronBulletPrefab, BIGIRONbulletSpawnPoint.position, transform.rotation);
                 BulletRB = newbullet.GetComponent<Rigidbody2D>();
                 BulletRB.AddForce(bulletSpawnPoint.right * bulletSpeed, ForceMode2D.Impulse);
@@ -357,19 +332,19 @@ public class PlayerController : MonoBehaviour
                     if (BIGIRONspareAmmo > 0)
                     {
                         canshoot = false;
-                        StartCoroutine(GunNoGoBoom(6f));
+                        StartCoroutine(GunNoGoBoom(6f, "Big_Iron"));
                     }
                 }
                 break;
         }
     }
-    IEnumerator GunNoGoBoom(float t)
+    IEnumerator GunNoGoBoom(float t, string gun)
     {
         yield return new WaitForSeconds(t);
 
-        switch (item)
+        switch (gun)
         {
-            case HeldItem.SKS:
+            case "SKS":
                 SKSammo += 30;
                 SKSspareAmmo--;
                 gunHasAmmo = true;
@@ -380,7 +355,7 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("mags left" + SKSspareAmmo);
                 break;
 
-            case HeldItem.BigIron:
+            case "Big_Iron":
                 BIGIRONammo += 6;
                 BIGIRONspareAmmo--;
                 gunHasAmmo = true;
@@ -392,35 +367,11 @@ public class PlayerController : MonoBehaviour
                 break;
         }
     }
+
     IEnumerator FireRate(float t)
     {
         yield return new WaitForSeconds(t);
         fireCoolDown = true;
         Debug.Log("Gun go daka daka");
     }
-  
-    private void switchGuns()
-    {
-        switch (item)
-        {
-            case HeldItem.SKS:
-                item = HeldItem.BigIron;
-                newGun = Instantiate(BigIronPrefab, BigIronSpawnPoint.transform, false);
-                Debug.Log("I have cleared leather");
-                break;
-
-            case HeldItem.BigIron:
-                item = HeldItem.SKS;
-                newGun = Instantiate(SKSPrefab, SKSspawnPoint.transform, false);
-                Debug.Log("SKS go boom");
-                break;
-        }
-    }
-}
-
-public enum HeldItem
-{
-    None, // 0
-    SKS, // 1
-    BigIron // 2
 }
