@@ -164,17 +164,6 @@ public class PlayerController : MonoBehaviour
     /*
     pass through number in function
     testfunc(n);
-
-    void testfunc(int n)
-    {
-          switch (playerInventory[n])
-            {
-                case "SKS"
-                    break;
-                case "Big_Iron"
-                    break;
-            }
-    }
     */
 
     void ActivateHeldItem(int n)

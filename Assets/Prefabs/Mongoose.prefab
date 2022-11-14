@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 80026215646498461}
   - component: {fileID: 80026215646498460}
   - component: {fileID: 80026215646498457}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mongoose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,9 +151,9 @@ MonoBehaviour:
   BigIronPrefab: {fileID: 1973525908624837723, guid: 1a7c76b0a03861343a7a3071624af206, type: 3}
   bulletPrefab: {fileID: 8233897029462314480, guid: f9531ff7ca630814194c1f183ddaab2c, type: 3}
   BigIronBulletPrefab: {fileID: 3496823707780609424, guid: 1705a5305e007bc469835bb6060da255, type: 3}
-  bullet: []
-  BigIronBullet: []
   uiObject: {fileID: 0}
+  bullet: {fileID: 0}
+  BigIronBullet: {fileID: 0}
   playerInventory: []
 --- !u!1 &1565645507049039892
 GameObject:
@@ -164,7 +164,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2122684608384188850}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'SKS spawn point '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1169174616673881516}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SKS bullet spawn point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +226,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7178107083084723979}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Big Iron spawn point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,6 +303,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bullet spwan point BIG IRON
       objectReference: {fileID: 0}
+    - target: {fileID: 7022835014784535202, guid: f9a6c4cf0d7cc7d41b5fc306b9ee8732, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9a6c4cf0d7cc7d41b5fc306b9ee8732, type: 3}
 --- !u!4 &769847495965180177 stripped
@@ -364,6 +368,10 @@ PrefabInstance:
     - target: {fileID: 3383934961058673752, guid: 8c694e4659e13f241a8cf573e0be559d, type: 3}
       propertyPath: m_Name
       value: player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3383934961058673752, guid: 8c694e4659e13f241a8cf573e0be559d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c694e4659e13f241a8cf573e0be559d, type: 3}
