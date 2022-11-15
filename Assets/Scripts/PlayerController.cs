@@ -69,8 +69,8 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                inventoryUI.ChangeActiveSlot(1);
                 currentActiveSlot = 1;
+                inventoryUI.ChangeActiveSlot(1);
                 ActivateHeldItem(0);
             }
         }
@@ -84,8 +84,8 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                inventoryUI.ChangeActiveSlot(2);
                 currentActiveSlot = 2;
+                inventoryUI.ChangeActiveSlot(2);
                 ActivateHeldItem(1);
             }
         }
@@ -173,6 +173,10 @@ public class PlayerController : MonoBehaviour
             playerInventory.RemoveAt(0);
             playerInventory.Insert(0, item);
             inventoryUI.UIupdate(item, 0);
+
+            currentActiveSlot = 1;
+            inventoryUI.ChangeActiveSlot(1);
+            ActivateHeldItem(0);
         }
         else if (playerInventory[1] == "none")
         {
@@ -180,6 +184,10 @@ public class PlayerController : MonoBehaviour
             playerInventory.RemoveAt(1);
             playerInventory.Insert(1, item);
             inventoryUI.UIupdate(item, 1);
+
+            currentActiveSlot = 2;
+            inventoryUI.ChangeActiveSlot(2);
+            ActivateHeldItem(1);
         }
 
         ListCheck("2nd");
@@ -215,6 +223,7 @@ public class PlayerController : MonoBehaviour
                 playerInventory.RemoveAt(0);
                 playerInventory.Insert(0, "none");
                 inventoryUI.UIupdate("none", 0);
+                ActivateHeldItem(3);
                 break;
 
             case (2):
@@ -239,6 +248,7 @@ public class PlayerController : MonoBehaviour
                 playerInventory.RemoveAt(1);
                 playerInventory.Insert(1, "none");
                 inventoryUI.UIupdate("none", 1);
+                ActivateHeldItem(3);
                 break;
         }
     }
