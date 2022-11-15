@@ -5,8 +5,17 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - playerSpawnPoint: {fileID: 491647795527138923, guid: 8c694e4659e13f241a8cf573e0be559d, type: 3}
-  - bulletPrefab: {fileID: 8233897029462314480, guid: f9531ff7ca630814194c1f183ddaab2c, type: 3}
+  - SKSspawnPoint: {instanceID: 0}
+  - BigIronSpawnPoint: {instanceID: 0}
   - bulletSpawnPoint: {instanceID: 0}
+  - BIGIRONbulletSpawnPoint: {instanceID: 0}
+  - SKSPrefab: {fileID: 8719021813734931350, guid: 20f7e72cac1f30542be805259b334815, type: 3}
+  - BigIronPrefab: {fileID: 1973525908624837723, guid: 1a7c76b0a03861343a7a3071624af206, type: 3}
+  - bulletPrefab: {fileID: 8233897029462314480, guid: f9531ff7ca630814194c1f183ddaab2c, type: 3}
+  - BigIronBulletPrefab: {instanceID: 0}
+  - uiObject: {instanceID: 0}
+  - bullet: {instanceID: 0}
+  - BigIronBullet: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

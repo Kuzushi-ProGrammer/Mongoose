@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     GameObject newPlayer;
     public GameObject playerSpawnPoint;
     int allotedMongeese = 1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Space))
             {
+                allotedMongeese = allotedMongeese - 1;
                 newPlayer = Instantiate(playerPrefab, playerSpawnPoint.transform, false);
                 Debug.Log("player spawned");
 
