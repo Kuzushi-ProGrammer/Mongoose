@@ -28,9 +28,11 @@ public class PlayerController : MonoBehaviour
     public List<string> playerInventory = new();
 
     public bool canPickupItems = true;
-    bool canshoot = true;
     bool fireCoolDown = true;
+    bool canshoot = true;
+    bool canShootBigIron = true;
     bool gunHasAmmo = true;
+    bool bigIronHasAmmo = true;
 
     float health = 3f;
     float SKSammo = 30;
@@ -38,7 +40,7 @@ public class PlayerController : MonoBehaviour
     float SKSspareAmmo = 69;
     float BIGIRONspareAmmo = 5;
 
-    int bulletSpeed = 30;
+    int bulletSpeed = 69;
     int currentActiveSlot;
 
     void Start()
@@ -54,8 +56,6 @@ public class PlayerController : MonoBehaviour
         PlayerRotation();
         PlayerMovement();
     }
-
-    // make gun swap execute on keypress instead of on fire
 
     void Update()
     {
@@ -97,15 +97,15 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Space)) // shoot gun
         {
-            if (gunHasAmmo && canshoot && fireCoolDown)
+            if (fireCoolDown)
             {
-                if (SKSGameObject.activeSelf)
+                if (SKSGameObject.activeSelf && gunHasAmmo && canshoot)
                 {
                     GunGoBoom("SKS");
                     fireCoolDown = false;
                     StartCoroutine(FireRate(0.1f));
                 }
-                else if (BigIronGameObject.activeSelf)
+                else if (BigIronGameObject.activeSelf && bigIronHasAmmo && canShootBigIron)
                 {
                     GunGoBoom("Big_Iron");
                     fireCoolDown = false;
@@ -115,7 +115,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void ActivateHeldItem(int n)
+    #region [Player Inventory]
+    void ActivateHeldItem(int n) // n is the index in the list
     {   
         if (n != 3)
         {
@@ -279,7 +280,8 @@ public class PlayerController : MonoBehaviour
         Debug.Log(n + " " + result);
     }
 
-    //Health
+    #endregion
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 3)
@@ -294,6 +296,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    #region [Shooting and Weaponry]
+
     void GunGoBoom(string gun)
     {
         GameObject newbullet;
@@ -305,12 +309,9 @@ public class PlayerController : MonoBehaviour
                 BulletRB = newbullet.GetComponent<Rigidbody2D>();
                 BulletRB.AddForce(bulletSpawnPoint.right * bulletSpeed, ForceMode2D.Impulse);
                 SKSammo--;
-                Debug.Log("you have " + SKSammo);
                 if (SKSammo <= 0)
                 {
                     gunHasAmmo = false;
-                    Debug.Log("out of ammo");
-
                     if (SKSspareAmmo > 0)
                     {
                         canshoot = false;
@@ -324,21 +325,19 @@ public class PlayerController : MonoBehaviour
                 BulletRB = newbullet.GetComponent<Rigidbody2D>();
                 BulletRB.AddForce(bulletSpawnPoint.right * bulletSpeed, ForceMode2D.Impulse);
                 BIGIRONammo --;
-                Debug.Log("you have " + BIGIRONammo);
                 if (BIGIRONammo <= 0)
                 {
-                    gunHasAmmo = false;
-                    Debug.Log("out of ammo");
-
+                    bigIronHasAmmo = false;
                     if (BIGIRONspareAmmo > 0)
                     {
-                        canshoot = false;
+                        canShootBigIron = false;
                         StartCoroutine(GunNoGoBoom(6f, "Big_Iron"));
                     }
                 }
                 break;
         }
     }
+
     IEnumerator GunNoGoBoom(float t, string gun)
     {
         yield return new WaitForSeconds(t);
@@ -350,21 +349,13 @@ public class PlayerController : MonoBehaviour
                 SKSspareAmmo--;
                 gunHasAmmo = true;
                 canshoot = true;
-
-                Debug.Log(SKSammo);
-                Debug.Log("done reload");
-                Debug.Log("mags left" + SKSspareAmmo);
                 break;
 
             case "Big_Iron":
                 BIGIRONammo += 6;
                 BIGIRONspareAmmo--;
-                gunHasAmmo = true;
-                canshoot = true;
-
-                Debug.Log(BIGIRONammo);
-                Debug.Log("done reload");
-                Debug.Log("Reloads left" + BIGIRONspareAmmo);
+                bigIronHasAmmo = true;
+                canShootBigIron = true;
                 break;
         }
     }
@@ -373,6 +364,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(t);
         fireCoolDown = true;
-        Debug.Log("Gun go daka daka");
     }
+
+    #endregion
 }
