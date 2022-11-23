@@ -12,6 +12,11 @@ public class PlayerController : MonoBehaviour
 {
     InventoryUI inventoryUI;
     Rigidbody2D BulletRB;
+    AudioSource audioSource;
+
+    [SerializeField] AudioClip pew;
+    [SerializeField] AudioClip pewButLower;
+    [SerializeField] AudioClip hurt;
 
     [SerializeField] Transform bulletSpawnPoint;
     [SerializeField] Transform BIGIRONbulletSpawnPoint;
@@ -46,6 +51,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         inventoryUI = uiObject.GetComponent<InventoryUI>();
+        audioSource = gameObject.GetComponent<AudioSource>();
 
         playerInventory.Add("none");
         playerInventory.Add("none");
@@ -293,6 +299,10 @@ public class PlayerController : MonoBehaviour
                 Destroy(gameObject);
                 Debug.Log("I have fallen and can't get up");
             }
+            else
+            {
+                audioSource.PlayOneShot(hurt);
+            }
         }
     }
 
@@ -318,6 +328,10 @@ public class PlayerController : MonoBehaviour
                         StartCoroutine(GunNoGoBoom(3f, "SKS"));
                     }
                 }
+                else
+                {
+                    audioSource.PlayOneShot(pew);
+                }
                 break;
 
             case "Big_Iron":
@@ -333,6 +347,10 @@ public class PlayerController : MonoBehaviour
                         canShootBigIron = false;
                         StartCoroutine(GunNoGoBoom(6f, "Big_Iron"));
                     }
+                }
+                else
+                {
+                    audioSource.PlayOneShot(pewButLower);
                 }
                 break;
         }
