@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 80026215646498460}
   - component: {fileID: 80026215646498457}
   - component: {fileID: 6276398362910745348}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Mongoose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -477,7 +477,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1169174616673881516}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: SKS bullet spawn point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -508,7 +508,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 769847495965180177}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Big Iron bullet spawn point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -587,7 +587,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3383934961058673752, guid: 8c694e4659e13f241a8cf573e0be559d, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c694e4659e13f241a8cf573e0be559d, type: 3}

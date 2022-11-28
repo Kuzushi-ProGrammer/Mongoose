@@ -7,10 +7,11 @@ public class SceneScript : MonoBehaviour
 {
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject settingsMenu;
+    [SerializeField] GameObject player;
 
     public void LoadGameScene()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     public void ActivateSettingsMenu()
