@@ -21,12 +21,12 @@ public class CollectibleScript : MonoBehaviour
                 {
                     Debug.Log("inventory not full (collectiblescript)");
 
-                    if (gameObject.name == "SKS" || gameObject.name == "SKS(Clone)")
+                    if (gameObject.name == "SKS" || gameObject.name == "SKS(Clone)" || gameObject.name == "SKS Spawn Pedestal")
                     {
                         playerController.AddItemToInventory("SKS");
                         Destroy(gameObject);
                     }
-                    else if (gameObject.name == "BigIronScene" || gameObject.name == "BigIronScene(Clone)")
+                    else if (gameObject.name == "BigIronScene" || gameObject.name == "BigIronScene(Clone)" || gameObject.name == "Big Iron Spawn Pedestal")
                     {
                         playerController.AddItemToInventory("Big_Iron");
                         Destroy(gameObject);
