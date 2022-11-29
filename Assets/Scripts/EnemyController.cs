@@ -39,7 +39,7 @@ public class EnemyController : MonoBehaviour
     void gunGoBoom()
     {
         hasBeenShot = false;
-        //newbullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, transform.rotation);
+        newbullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
         Debug.Log("bang bang bang");
     }
 
@@ -72,7 +72,7 @@ public class EnemyController : MonoBehaviour
     }
         int numbers()
         {
-            int randomNumber = Random.Range(1, 5000);
+            int randomNumber = Random.Range(1,500);
             return randomNumber;
         }
         void handleMovement()
@@ -99,7 +99,7 @@ public class EnemyController : MonoBehaviour
         }
         IEnumerator changeDirectionCoolDownTimer()
         {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(10);
             changeDirectionCoolDown = false;
             Debug.Log("I could turn but I don't feel like it");
         }
