@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.FullSerializer;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -11,7 +10,7 @@ public class EnemyController : MonoBehaviour
     GameObject newbullet;
 
     public GameObject bulletPrefab;
-    public Transform bulletSpawnPoint;
+    public GameObject bulletSpawnPoint;
     int bulletSpeed = 100;
     bool hasShotBack1 = false;
     DIRECTION enemyDirection = DIRECTION.DOWN;
@@ -19,16 +18,10 @@ public class EnemyController : MonoBehaviour
     int enemySpeed = 10;
     bool changeDirectionCoolDown = true;
 
-    //rotate
-    private Vector3 v_diff;
-    private float atan2;
-    public Transform target;
-
-   
+    // Start is called before the first frame update
     void Start()
     {
         enemyRB = GetComponent<Rigidbody2D>();
-        target = GameObject.FindWithTag("get rotated nerd").transform;
     }
 
     // Update is called once per frame
@@ -40,14 +33,13 @@ public class EnemyController : MonoBehaviour
         }
         handleMovement();
         changeDirection();
-        Rot();
        
-        
+
     }
     void gunGoBoom()
     {
         hasBeenShot = false;
-        newbullet = Instantiate(bulletPrefab,bulletSpawnPoint.position, transform.rotation);
+        //newbullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, transform.rotation);
         Debug.Log("bang bang bang");
     }
 
@@ -80,7 +72,7 @@ public class EnemyController : MonoBehaviour
     }
         int numbers()
         {
-            int randomNumber = Random.Range(1,500);
+            int randomNumber = Random.Range(1, 5000);
             return randomNumber;
         }
         void handleMovement()
@@ -107,17 +99,10 @@ public class EnemyController : MonoBehaviour
         }
         IEnumerator changeDirectionCoolDownTimer()
         {
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(2);
             changeDirectionCoolDown = false;
             Debug.Log("I could turn but I don't feel like it");
         }
-    private void Rot()
-    {
-
-        v_diff = (target.transform.position - transform.position);
-        atan2 = Mathf.Atan2(v_diff.y, v_diff.x);
-        transform.rotation = Quaternion.Euler(0f, 0f, atan2 * Mathf.Rad2Deg - 90f);
-    }
     
 }
 
