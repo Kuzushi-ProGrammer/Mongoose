@@ -8,14 +8,10 @@ public class EnemyController : MonoBehaviour
 {
     public float health = 3;
     public bool hasBeenShot = false;
-    GameObject newbullet;
-
-    public GameObject bulletPrefab;
-    public Transform bulletSpawnPoint;
-    int bulletSpeed = 100;
     bool hasShotBack1 = false;
     DIRECTION enemyDirection = DIRECTION.DOWN;
     Rigidbody2D enemyRB;
+    
     int enemySpeed = 10;
     bool changeDirectionCoolDown = true;
 
@@ -24,11 +20,17 @@ public class EnemyController : MonoBehaviour
     private float atan2;
     public Transform target;
 
-   
+    //Bullet
+    Rigidbody2D BulletRB;
+    int bulletSpeed = 69;
+    GameObject newbullet;
+    public GameObject bulletPrefab;
+    public Transform bulletSpawnPoint;
+
     void Start()
     {
         enemyRB = GetComponent<Rigidbody2D>();
-        target = GameObject.FindWithTag("get rotated nerd").transform;
+        target = GameObject.FindWithTag("Player").transform;
     }
 
     // Update is called once per frame
@@ -41,13 +43,17 @@ public class EnemyController : MonoBehaviour
         handleMovement();
         changeDirection();
         Rot();
-       
+       if(numbers2() <= 1)
+        {
+            gunGoBoom();
+        }
         
     }
     void gunGoBoom()
     {
         hasBeenShot = false;
         newbullet = Instantiate(bulletPrefab,bulletSpawnPoint.position, transform.rotation);
+        BulletRB.AddForce(bulletSpawnPoint.right * bulletSpeed, ForceMode2D.Impulse);
         Debug.Log("bang bang bang");
     }
 
@@ -83,7 +89,12 @@ public class EnemyController : MonoBehaviour
             int randomNumber = Random.Range(1,500);
             return randomNumber;
         }
-        void handleMovement()
+    int numbers2()
+    {
+        int randomNumber = Random.Range(1, 2500);
+        return randomNumber;
+    }
+    void handleMovement()
         {
             switch (enemyDirection)
             {
@@ -116,7 +127,7 @@ public class EnemyController : MonoBehaviour
 
         v_diff = (target.transform.position - transform.position);
         atan2 = Mathf.Atan2(v_diff.y, v_diff.x);
-        transform.rotation = Quaternion.Euler(0f, 0f, atan2 * Mathf.Rad2Deg - 90f);
+        transform.rotation = Quaternion.Euler(0f, 0f, atan2 * Mathf.Rad2Deg - 270f);
     }
     
 }
