@@ -4,7 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - get rotated nerd
+  - Key
+  - Weapon
+  - Door
+  - Keyhole
   layers:
   - Default
   - TransparentFX

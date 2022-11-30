@@ -1,6 +1,3 @@
-
-
-
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -31,6 +28,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject BigIronGameObject;
 
     public List<string> playerInventory = new();
+    public List<string> keyInventory = new();
 
     public bool canPickupItems = true;
     bool fireCoolDown = true;
