@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Tracing;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -116,6 +117,25 @@ public class PlayerController : MonoBehaviour
                     StartCoroutine(FireRate(1f));
                 }
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            // Log each element one at a time
+            foreach (var item in keyInventory)
+            {
+                Debug.Log(item.ToString());
+            }
+
+            // Concatenate all items into a single string
+            // NOTE:  If the List is long, this would be more efficient with a
+            // StringBuilder
+            string result = "List contents: ";
+            foreach (var item in keyInventory)
+            {
+                result += item.ToString() + ", ";
+            }
+            Debug.Log(result);
         }
     }
 

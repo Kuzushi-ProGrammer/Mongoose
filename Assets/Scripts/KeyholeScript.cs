@@ -13,58 +13,66 @@ public class KeyholeScript : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            playerController = collision.GetComponent<PlayerController>();
             spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 
             Debug.Log("Collided with Keyhole");
+            Debug.Log(transform.parent.gameObject.name);
 
-            switch (gameObject.name)
+            switch (transform.parent.gameObject.name)
             {
                 case ("Red Door"):
+                    playerController = collision.GetComponent<PlayerController>();
                     if (playerController.keyInventory.Contains("RedKey"))
                     {
-                        Destroy(gameObject.transform.Find("Keyhole"));
+                        Debug.Log("has red key");
+
+                        Destroy(GameObject.Find("Keyhole"));
                         spriteRenderer.sprite = closed;
 
-                        Destroy(gameObject.transform.Find("Door Left")); // replace with interpolation like an opening motion if time allows
-                        Destroy(gameObject.transform.Find("Door Right"));
-
+                        Destroy(GameObject.Find("Left Door")); // replace with interpolation like an opening motion if time allows
+                        Destroy(GameObject.Find("Right Door"));
                     }
                     break;
 
                 case ("Blue Door"):
+                    playerController = collision.GetComponent<PlayerController>();
                     if (playerController.keyInventory.Contains("BlueKey"))
                     {
-                        Destroy(gameObject.transform.Find("Keyhole"));
+                        Debug.Log("has blue key");
+
+                        Destroy(GameObject.Find("Keyhole"));
                         spriteRenderer.sprite = closed;
 
-                        Destroy(gameObject.transform.Find("Door Left")); // replace with interpolation like an opening motion if time allows
-                        Destroy(gameObject.transform.Find("Door Right"));
-
+                        Destroy(GameObject.Find("Left Door")); // replace with interpolation like an opening motion if time allows
+                        Destroy(GameObject.Find("Right Door"));
+                    }
+                    else
+                    {
+                        Debug.Log("no key :(");
                     }
                     break;
 
                 case ("Green Door"):
+                    playerController = collision.GetComponent<PlayerController>();
                     if (playerController.keyInventory.Contains("GreenKey"))
                     {
-                        Destroy(gameObject.transform.Find("Keyhole"));
+                        Destroy(GameObject.Find("Keyhole"));
                         spriteRenderer.sprite = closed;
 
-                        Destroy(gameObject.transform.Find("Door Left")); // replace with interpolation like an opening motion if time allows
-                        Destroy(gameObject.transform.Find("Door Right"));
-
+                        Destroy(GameObject.Find("Left Door")); // replace with interpolation like an opening motion if time allows
+                        Destroy(GameObject.Find("Right Door"));
                     }
                     break;
 
                 case ("Yellow Door"):
+                    playerController = collision.GetComponent<PlayerController>();
                     if (playerController.keyInventory.Contains("YellowKey"))
                     {
-                        Destroy(gameObject.transform.Find("Keyhole"));
+                        Destroy(GameObject.Find("Keyhole"));
                         spriteRenderer.sprite = closed;
 
-                        Destroy(gameObject.transform.Find("Door Left")); // replace with interpolation like an opening motion if time allows
-                        Destroy(gameObject.transform.Find("Door Right"));
-
+                        Destroy(GameObject.Find("Left Door")); // replace with interpolation like an opening motion if time allows
+                        Destroy(GameObject.Find("Right Door"));
                     }
                     break;
             }

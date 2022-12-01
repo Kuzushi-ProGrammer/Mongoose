@@ -213,7 +213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 95647885}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 99.9, y: 182.5, z: -1.0193205}
+  m_LocalPosition: {x: 99.899994, y: 182.5, z: -1.0193205}
   m_LocalScale: {x: 0.23468025, y: 0.23468025, z: 0.23468025}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 107769984}
   - component: {fileID: 107769988}
   - component: {fileID: 107769987}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64267,7 +64267,7 @@ GameObject:
   - component: {fileID: 121526768}
   - component: {fileID: 121526769}
   - component: {fileID: 121526770}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Left Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64287,7 +64287,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 660161886}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &121526769
 SpriteRenderer:
@@ -64603,7 +64603,7 @@ GameObject:
   - component: {fileID: 252446438}
   - component: {fileID: 252446439}
   - component: {fileID: 252446440}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Right Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64618,7 +64618,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 252446437}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 101.71936, y: 4.5392838, z: 3.9806795}
+  m_LocalPosition: {x: 101.71936, y: 4.5392914, z: 3.9806795}
   m_LocalScale: {x: 13, y: 13, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -64714,7 +64714,7 @@ GameObject:
   - component: {fileID: 291856538}
   - component: {fileID: 291856539}
   - component: {fileID: 291856540}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Left Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64814,41 +64814,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7851074, y: 0.7612299}
   m_EdgeRadius: 0
---- !u!1 &302556717
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 302556718}
-  m_Layer: 0
-  m_Name: Doors
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &302556718
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 302556717}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 351.76678, y: 24.606026, z: -3.050992}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 323855414}
-  - {fileID: 1760501864}
-  - {fileID: 758274219}
-  - {fileID: 660161886}
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &323855413
 GameObject:
   m_ObjectHideFlags: 0
@@ -64873,7 +64838,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 323855413}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -94.486145, y: -136.24532, z: -0.9296875}
+  m_LocalPosition: {x: 257.28064, y: -111.63929, z: -3.9806795}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -64881,8 +64846,8 @@ Transform:
   - {fileID: 873347827}
   - {fileID: 1739817624}
   - {fileID: 1280264424}
-  m_Father: {fileID: 302556718}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &392791101
 GameObject:
@@ -64895,7 +64860,7 @@ GameObject:
   - component: {fileID: 392791102}
   - component: {fileID: 392791103}
   - component: {fileID: 392791104}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Left Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64915,7 +64880,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1760501864}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &392791103
 SpriteRenderer:
@@ -65228,9 +65193,10 @@ GameObject:
   - component: {fileID: 628344845}
   - component: {fileID: 628344846}
   - component: {fileID: 628344847}
+  - component: {fileID: 628344848}
   m_Layer: 0
-  m_Name: Trash Can Open
-  m_TagString: Untagged
+  m_Name: ColliderRed
+  m_TagString: Keyhole
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65243,7 +65209,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 628344844}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -29.980637, y: 63.8, z: 3.9806795}
+  m_LocalPosition: {x: -29.980637, y: 63.800003, z: 3.9806795}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -65312,12 +65278,25 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.1058136, y: -0.13402672}
   serializedVersion: 2
   m_Radius: 0.3730259
+--- !u!114 &628344848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628344844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3916334ee4afaae409a2c16ae89fbcf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  closed: {fileID: 21300000, guid: 62705df99b947e54587fe54f359bafa2, type: 3}
 --- !u!1 &660161885
 GameObject:
   m_ObjectHideFlags: 0
@@ -65342,16 +65321,16 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 660161885}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -94.486145, y: -136.24532, z: -0.9296875}
+  m_LocalPosition: {x: 257.28064, y: -111.63929, z: -3.9806795}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1381867481}
   - {fileID: 95647886}
-  - {fileID: 2078958330}
   - {fileID: 121526768}
-  m_Father: {fileID: 302556718}
-  m_RootOrder: 3
+  - {fileID: 2078958330}
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &692906902
 GameObject:
@@ -65453,7 +65432,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 758274218}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -94.486145, y: -136.24532, z: -0.9296875}
+  m_LocalPosition: {x: 257.28064, y: -111.63929, z: -3.9806795}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -65461,8 +65440,8 @@ Transform:
   - {fileID: 796433971}
   - {fileID: 291856538}
   - {fileID: 252446438}
-  m_Father: {fileID: 302556718}
-  m_RootOrder: 2
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &796433970
 GameObject:
@@ -65489,7 +65468,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 796433970}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 91.01935, y: -4.23, z: -1.0193205}
+  m_LocalPosition: {x: 91.01935, y: -4.2299957, z: -1.0193205}
   m_LocalScale: {x: 0.23468025, y: 0.23468025, z: 0.23468025}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -65683,9 +65662,10 @@ GameObject:
   - component: {fileID: 863765082}
   - component: {fileID: 863765083}
   - component: {fileID: 863765084}
+  - component: {fileID: 863765085}
   m_Layer: 0
-  m_Name: Trash Can Open
-  m_TagString: Untagged
+  m_Name: ColliderBlue
+  m_TagString: Keyhole
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65767,12 +65747,25 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.10056019, y: 0.14566965}
   serializedVersion: 2
   m_Radius: 0.40180618
+--- !u!114 &863765085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863765081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3916334ee4afaae409a2c16ae89fbcf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  closed: {fileID: 21300000, guid: 62705df99b947e54587fe54f359bafa2, type: 3}
 --- !u!1 &873347826
 GameObject:
   m_ObjectHideFlags: 0
@@ -66231,9 +66224,10 @@ GameObject:
   - component: {fileID: 1114002734}
   - component: {fileID: 1114002735}
   - component: {fileID: 1114002736}
+  - component: {fileID: 1114002737}
   m_Layer: 0
-  m_Name: Trash Can Open
-  m_TagString: Untagged
+  m_Name: ColliderGreen
+  m_TagString: Keyhole
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66246,7 +66240,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1114002733}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 90.41937, y: -3.7, z: 3.9806795}
+  m_LocalPosition: {x: 90.41937, y: -3.699997, z: 3.9806795}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -66315,12 +66309,25 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.102423094, y: -0.12437687}
   serializedVersion: 2
   m_Radius: 0.39025268
+--- !u!114 &1114002737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114002733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3916334ee4afaae409a2c16ae89fbcf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  closed: {fileID: 21300000, guid: 62705df99b947e54587fe54f359bafa2, type: 3}
 --- !u!1 &1139515699
 GameObject:
   m_ObjectHideFlags: 0
@@ -66543,7 +66550,7 @@ GameObject:
   - component: {fileID: 1280264424}
   - component: {fileID: 1280264425}
   - component: {fileID: 1280264426}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Right Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66654,9 +66661,10 @@ GameObject:
   - component: {fileID: 1381867481}
   - component: {fileID: 1381867482}
   - component: {fileID: 1381867483}
+  - component: {fileID: 1381867484}
   m_Layer: 0
-  m_Name: Trash Can Open
-  m_TagString: Untagged
+  m_Name: ColliderYellow
+  m_TagString: Keyhole
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66669,7 +66677,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1381867480}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 100.37, y: 181.89, z: 3.9806795}
+  m_LocalPosition: {x: 100.369995, y: 181.89, z: 3.9806795}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -66738,12 +66746,25 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.09759779, y: 0.12362137}
   serializedVersion: 2
   m_Radius: 0.3958949
+--- !u!114 &1381867484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381867480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3916334ee4afaae409a2c16ae89fbcf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  closed: {fileID: 21300000, guid: 62705df99b947e54587fe54f359bafa2, type: 3}
 --- !u!1 &1386999273
 GameObject:
   m_ObjectHideFlags: 0
@@ -67169,7 +67190,7 @@ GameObject:
   - component: {fileID: 1739817624}
   - component: {fileID: 1739817625}
   - component: {fileID: 1739817626}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Left Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67328,16 +67349,16 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1760501863}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -94.486145, y: -136.24532, z: -0.9296875}
+  m_LocalPosition: {x: 257.28064, y: -111.63929, z: -3.9806795}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 863765082}
   - {fileID: 213187694}
-  - {fileID: 2089488877}
   - {fileID: 392791102}
-  m_Father: {fileID: 302556718}
-  m_RootOrder: 1
+  - {fileID: 2089488877}
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1895802268
 GameObject:
@@ -102256,7 +102277,7 @@ GameObject:
   - component: {fileID: 1948748384}
   - component: {fileID: 1948748387}
   m_Layer: 0
-  m_Name: Bluekey
+  m_Name: BlueKey
   m_TagString: Key
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102519,7 +102540,7 @@ GameObject:
   - component: {fileID: 2078958330}
   - component: {fileID: 2078958331}
   - component: {fileID: 2078958332}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Right Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102539,7 +102560,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 660161886}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2078958331
 SpriteRenderer:
@@ -102706,7 +102727,7 @@ GameObject:
   - component: {fileID: 2089488877}
   - component: {fileID: 2089488878}
   - component: {fileID: 2089488879}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Right Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102726,7 +102747,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1760501864}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2089488878
 SpriteRenderer:
