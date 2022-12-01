@@ -25,12 +25,7 @@ public class KeyholeScript : MonoBehaviour
                     if (playerController.keyInventory.Contains("RedKey"))
                     {
                         Debug.Log("has red key");
-
-                        Destroy(GameObject.Find("Keyhole"));
-                        spriteRenderer.sprite = closed;
-
-                        Destroy(GameObject.Find("Left Door")); // replace with interpolation like an opening motion if time allows
-                        Destroy(GameObject.Find("Right Door"));
+                        Destroy(transform.parent.gameObject);
                     }
                     break;
 
@@ -39,16 +34,7 @@ public class KeyholeScript : MonoBehaviour
                     if (playerController.keyInventory.Contains("BlueKey"))
                     {
                         Debug.Log("has blue key");
-
-                        Destroy(GameObject.Find("Keyhole"));
-                        spriteRenderer.sprite = closed;
-
-                        Destroy(GameObject.Find("Left Door")); // replace with interpolation like an opening motion if time allows
-                        Destroy(GameObject.Find("Right Door"));
-                    }
-                    else
-                    {
-                        Debug.Log("no key :(");
+                        Destroy(transform.parent.gameObject);
                     }
                     break;
 
@@ -56,11 +42,8 @@ public class KeyholeScript : MonoBehaviour
                     playerController = collision.GetComponent<PlayerController>();
                     if (playerController.keyInventory.Contains("GreenKey"))
                     {
-                        Destroy(GameObject.Find("Keyhole"));
-                        spriteRenderer.sprite = closed;
-
-                        Destroy(GameObject.Find("Left Door")); // replace with interpolation like an opening motion if time allows
-                        Destroy(GameObject.Find("Right Door"));
+                        Debug.Log("has green key");
+                        Destroy(transform.parent.gameObject);
                     }
                     break;
 
@@ -68,11 +51,8 @@ public class KeyholeScript : MonoBehaviour
                     playerController = collision.GetComponent<PlayerController>();
                     if (playerController.keyInventory.Contains("YellowKey"))
                     {
-                        Destroy(GameObject.Find("Keyhole"));
-                        spriteRenderer.sprite = closed;
-
-                        Destroy(GameObject.Find("Left Door")); // replace with interpolation like an opening motion if time allows
-                        Destroy(GameObject.Find("Right Door"));
+                        Debug.Log("has yellow key");
+                        Destroy(transform.parent.gameObject);
                     }
                     break;
             }

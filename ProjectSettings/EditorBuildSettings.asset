@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameScene Real.unity
     guid: 78090dc45011c3149bf36f0ebfb98177
+  - enabled: 1
+    path: Assets/Scenes/YIPEE.unity
+    guid: 37746aac565c4a240bebc2d115653f8b
   m_configObjects: {}
