@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 95647886}
   - component: {fileID: 95647887}
   m_Layer: 0
-  m_Name: keyhole
+  m_Name: Keyhole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -213,7 +213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 95647885}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 100.21936, y: 182.4393, z: -1.0193205}
+  m_LocalPosition: {x: 99.9, y: 182.5, z: -1.0193205}
   m_LocalScale: {x: 0.23468025, y: 0.23468025, z: 0.23468025}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -64266,8 +64266,9 @@ GameObject:
   m_Component:
   - component: {fileID: 121526768}
   - component: {fileID: 121526769}
+  - component: {fileID: 121526770}
   m_Layer: 0
-  m_Name: Trashcan Closed (1)
+  m_Name: Left Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64340,6 +64341,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &121526770
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121526767}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.09581551, y: -0.10859206}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.808369, y: 0.7828159}
+  m_EdgeRadius: 0
 --- !u!1 &171323276
 GameObject:
   m_ObjectHideFlags: 0
@@ -64427,7 +64454,7 @@ GameObject:
   - component: {fileID: 213187694}
   - component: {fileID: 213187695}
   m_Layer: 0
-  m_Name: keyhole
+  m_Name: Keyhole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64441,7 +64468,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 213187693}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 182.51935, y: 98.53929, z: -1.0193205}
+  m_LocalPosition: {x: 182.51935, y: 99.81, z: -1.0193205}
   m_LocalScale: {x: 0.23468025, y: 0.23468025, z: 0.23468025}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -64575,8 +64602,9 @@ GameObject:
   m_Component:
   - component: {fileID: 252446438}
   - component: {fileID: 252446439}
+  - component: {fileID: 252446440}
   m_Layer: 0
-  m_Name: Trashcan Closed (1)
+  m_Name: Right Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64649,6 +64677,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &252446440
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252446437}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.08356987, y: -0.11938524}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.7851069, y: 0.7612295}
+  m_EdgeRadius: 0
 --- !u!1 &291856537
 GameObject:
   m_ObjectHideFlags: 0
@@ -64659,8 +64713,9 @@ GameObject:
   m_Component:
   - component: {fileID: 291856538}
   - component: {fileID: 291856539}
+  - component: {fileID: 291856540}
   m_Layer: 0
-  m_Name: Trashcan Closed
+  m_Name: Left Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64733,6 +64788,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &291856540
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 291856537}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.10744631, y: -0.11938505}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.7851074, y: 0.7612299}
+  m_EdgeRadius: 0
 --- !u!1 &302556717
 GameObject:
   m_ObjectHideFlags: 0
@@ -64813,8 +64894,9 @@ GameObject:
   m_Component:
   - component: {fileID: 392791102}
   - component: {fileID: 392791103}
+  - component: {fileID: 392791104}
   m_Layer: 0
-  m_Name: Trashcan Closed (1)
+  m_Name: Left Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64887,6 +64969,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &392791104
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392791101}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.09522088, y: -0.11902514}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.8095583, y: 0.7619497}
+  m_EdgeRadius: 0
 --- !u!1 &434287545
 GameObject:
   m_ObjectHideFlags: 0
@@ -65119,8 +65227,9 @@ GameObject:
   m_Component:
   - component: {fileID: 628344845}
   - component: {fileID: 628344846}
+  - component: {fileID: 628344847}
   m_Layer: 0
-  m_Name: Trashcan Open
+  m_Name: Trash Can Open
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65134,7 +65243,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 628344844}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -29.980637, y: 64.439285, z: 3.9806795}
+  m_LocalPosition: {x: -29.980637, y: 63.8, z: 3.9806795}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -65193,6 +65302,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &628344847
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628344844}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.1058136, y: -0.13402672}
+  serializedVersion: 2
+  m_Radius: 0.3730259
 --- !u!1 &660161885
 GameObject:
   m_ObjectHideFlags: 0
@@ -65350,7 +65475,7 @@ GameObject:
   - component: {fileID: 796433971}
   - component: {fileID: 796433972}
   m_Layer: 0
-  m_Name: keyhole
+  m_Name: Keyhole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65364,7 +65489,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 796433970}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 91.01935, y: -3.8607101, z: -1.0193205}
+  m_LocalPosition: {x: 91.01935, y: -4.23, z: -1.0193205}
   m_LocalScale: {x: 0.23468025, y: 0.23468025, z: 0.23468025}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -65557,8 +65682,9 @@ GameObject:
   m_Component:
   - component: {fileID: 863765082}
   - component: {fileID: 863765083}
+  - component: {fileID: 863765084}
   m_Layer: 0
-  m_Name: Trashcan Open (2)
+  m_Name: Trash Can Open
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65623,7 +65749,7 @@ SpriteRenderer:
   m_Sprite: {fileID: 21300000, guid: 816be8341c2e00c48a0deff6fe49f98f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
-  m_FlipY: 0
+  m_FlipY: 1
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
@@ -65631,6 +65757,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &863765084
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863765081}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.10056019, y: 0.14566965}
+  serializedVersion: 2
+  m_Radius: 0.40180618
 --- !u!1 &873347826
 GameObject:
   m_ObjectHideFlags: 0
@@ -65642,7 +65784,7 @@ GameObject:
   - component: {fileID: 873347827}
   - component: {fileID: 873347828}
   m_Layer: 0
-  m_Name: keyhole
+  m_Name: Keyhole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65656,7 +65798,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 873347826}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -29.380646, y: 63.839287, z: -1.0193205}
+  m_LocalPosition: {x: -29.380646, y: 63.200005, z: -1.0193205}
   m_LocalScale: {x: 0.23468025, y: 0.23468025, z: 0.23468025}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -66088,8 +66230,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1114002734}
   - component: {fileID: 1114002735}
+  - component: {fileID: 1114002736}
   m_Layer: 0
-  m_Name: Trashcan Open (1)
+  m_Name: Trash Can Open
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66103,7 +66246,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1114002733}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 90.41937, y: -3.2607117, z: 3.9806795}
+  m_LocalPosition: {x: 90.41937, y: -3.7, z: 3.9806795}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -66162,6 +66305,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1114002736
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114002733}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.102423094, y: -0.12437687}
+  serializedVersion: 2
+  m_Radius: 0.39025268
 --- !u!1 &1139515699
 GameObject:
   m_ObjectHideFlags: 0
@@ -66383,8 +66542,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1280264424}
   - component: {fileID: 1280264425}
+  - component: {fileID: 1280264426}
   m_Layer: 0
-  m_Name: Trashcan Closed (1)
+  m_Name: Right Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66457,6 +66617,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1280264426
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280264423}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.103279084, y: -0.12393515}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.79344183, y: 0.7521297}
+  m_EdgeRadius: 0
 --- !u!1 &1381867480
 GameObject:
   m_ObjectHideFlags: 0
@@ -66467,8 +66653,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1381867481}
   - component: {fileID: 1381867482}
+  - component: {fileID: 1381867483}
   m_Layer: 0
-  m_Name: Trashcan Open (3)
+  m_Name: Trash Can Open
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66482,7 +66669,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1381867480}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 99.91937, y: 182.73929, z: 3.9806795}
+  m_LocalPosition: {x: 100.37, y: 181.89, z: 3.9806795}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -66532,8 +66719,8 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 816be8341c2e00c48a0deff6fe49f98f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
+  m_FlipX: 1
+  m_FlipY: 1
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
@@ -66541,6 +66728,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1381867483
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381867480}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.09759779, y: 0.12362137}
+  serializedVersion: 2
+  m_Radius: 0.3958949
 --- !u!1 &1386999273
 GameObject:
   m_ObjectHideFlags: 0
@@ -66965,8 +67168,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1739817624}
   - component: {fileID: 1739817625}
+  - component: {fileID: 1739817626}
   m_Layer: 0
-  m_Name: Trashcan Closed
+  m_Name: Left Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67039,6 +67243,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1739817626
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739817623}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.10327934, y: -0.11704987}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.7934413, y: 0.76590025}
+  m_EdgeRadius: 0
 --- !u!1 &1754344433
 GameObject:
   m_ObjectHideFlags: 0
@@ -102288,8 +102518,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2078958330}
   - component: {fileID: 2078958331}
+  - component: {fileID: 2078958332}
   m_Layer: 0
-  m_Name: Trashcan Closed
+  m_Name: Right Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102362,6 +102593,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &2078958332
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078958329}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.09581657, y: -0.11498004}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.8083669, y: 0.7700399}
+  m_EdgeRadius: 0
 --- !u!1 &2083644878
 GameObject:
   m_ObjectHideFlags: 0
@@ -102448,8 +102705,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2089488877}
   - component: {fileID: 2089488878}
+  - component: {fileID: 2089488879}
   m_Layer: 0
-  m_Name: Trashcan Closed
+  m_Name: Right Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102522,6 +102780,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &2089488879
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089488876}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.08728555, y: -0.11109018}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.8254289, y: 0.77781963}
+  m_EdgeRadius: 0
 --- !u!1001 &80026215138404490
 PrefabInstance:
   m_ObjectHideFlags: 0
