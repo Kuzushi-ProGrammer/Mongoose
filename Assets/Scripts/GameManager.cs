@@ -27,16 +27,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (allotedMongeese > 0)
-        {
-            if (Input.GetKey(KeyCode.Space))
-            {
-                allotedMongeese = allotedMongeese - 1;
-                newPlayer = Instantiate(playerPrefab, playerSpawnPoint.transform, false);
-                Debug.Log("player spawned");
 
-            }
-        }
     }
    
 }

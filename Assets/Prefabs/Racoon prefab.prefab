@@ -132,9 +132,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   hasBeenShot: 0
-  bulletPrefab: {fileID: 8233897029462314480, guid: f9531ff7ca630814194c1f183ddaab2c, type: 3}
-  bulletSpawnPoint: {fileID: 1099501610173569462}
   target: {fileID: 0}
+  bulletPrefab: {fileID: 8874627470726790145, guid: cc37d3eb096d71448b33e2ecd2f40a73, type: 3}
+  bulletSpawnPoint: {fileID: 1099501610173569462}
 --- !u!1001 &4893540837040927112
 PrefabInstance:
   m_ObjectHideFlags: 0

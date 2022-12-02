@@ -53,7 +53,8 @@ public class EnemyController : MonoBehaviour
     {
         hasBeenShot = false;
         newbullet = Instantiate(bulletPrefab,bulletSpawnPoint.position, transform.rotation);
-        BulletRB.AddForce(bulletSpawnPoint.right * bulletSpeed, ForceMode2D.Impulse);
+        BulletRB = newbullet.GetComponent<Rigidbody2D>();
+        BulletRB.AddForce(bulletSpawnPoint.up * -bulletSpeed, ForceMode2D.Impulse);
         Debug.Log("bang bang bang");
     }
 
@@ -91,7 +92,7 @@ public class EnemyController : MonoBehaviour
         }
     int numbers2()
     {
-        int randomNumber = Random.Range(1, 2500);
+        int randomNumber = Random.Range(1, 500);
         return randomNumber;
     }
     void handleMovement()
@@ -118,9 +119,9 @@ public class EnemyController : MonoBehaviour
         }
         IEnumerator changeDirectionCoolDownTimer()
         {
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(5);
             changeDirectionCoolDown = false;
-            Debug.Log("I could turn but I don't feel like it");
+           
         }
     private void Rot()
     {
