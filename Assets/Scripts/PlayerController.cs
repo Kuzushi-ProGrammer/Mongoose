@@ -38,12 +38,12 @@ public class PlayerController : MonoBehaviour
     bool gunHasAmmo = true;
     bool bigIronHasAmmo = true;
 
-    float health = 3f;
     float SKSammo = 30;
     float BIGIRONammo = 6;
     float SKSspareAmmo = 69;
     float BIGIRONspareAmmo = 5;
 
+    public int health = 3;
     int bulletSpeed = 69;
     int currentActiveSlot;
 

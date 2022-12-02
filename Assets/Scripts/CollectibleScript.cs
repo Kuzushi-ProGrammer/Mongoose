@@ -12,34 +12,38 @@ public class CollectibleScript : MonoBehaviour
         {
             playerController = collision.GetComponent<PlayerController>();
 
-            if (gameObject.tag == "Key")
+            switch (gameObject.tag)
             {
-                playerController.keyInventory.Add(gameObject.name);
-                Debug.Log("added: " + gameObject.name);
-                Destroy(gameObject);
-            }
+                case "Key":
+                    playerController.keyInventory.Add(gameObject.name);
+                    Debug.Log("added: " + gameObject.name);
+                    Destroy(gameObject);
+                    break;
 
-            else if (gameObject.tag == "Weapon")
-            {
-                if (playerController.canPickupItems)
-                {
-                    if (playerController.playerInventory[0] == "none" || playerController.playerInventory[1] == "none")
+                case "Health":
+                    playerController.health++;
+                    break;
+
+                case "Weapon":
+                    if (playerController.canPickupItems)
                     {
-                        if (gameObject.name == "SKS" || gameObject.name == "SKS(Clone)" || gameObject.name == "SKS Spawn Pedestal")
+                        if (playerController.playerInventory[0] == "none" || playerController.playerInventory[1] == "none")
                         {
-                            playerController.AddItemToInventory("SKS");
-                            Destroy(gameObject);
+                            if (gameObject.name == "SKS" || gameObject.name == "SKS(Clone)" || gameObject.name == "SKS Spawn Pedestal")
+                            {
+                                playerController.AddItemToInventory("SKS");
+                                Destroy(gameObject);
+                            }
+                            else if (gameObject.name == "BigIronScene" || gameObject.name == "BigIronScene(Clone)" || gameObject.name == "Big Iron Spawn Pedestal")
+                            {
+                                playerController.AddItemToInventory("Big_Iron");
+                                Destroy(gameObject);
+                            }
                         }
-                        else if (gameObject.name == "BigIronScene" || gameObject.name == "BigIronScene(Clone)" || gameObject.name == "Big Iron Spawn Pedestal")
-                        {
-                            playerController.AddItemToInventory("Big_Iron");
-                            Destroy(gameObject);
-                        }
+
                     }
-
-                }
+                    break;
             }
-
         }
     }
 
