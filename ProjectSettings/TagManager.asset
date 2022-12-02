@@ -8,6 +8,7 @@ TagManager:
   - Weapon
   - Door
   - Keyhole
+  - Health
   layers:
   - Default
   - TransparentFX
