@@ -55,7 +55,7 @@ public class EnemyController : MonoBehaviour
         newbullet = Instantiate(bulletPrefab,bulletSpawnPoint.position, transform.rotation);
         BulletRB = newbullet.GetComponent<Rigidbody2D>();
         BulletRB.AddForce(bulletSpawnPoint.up * -bulletSpeed, ForceMode2D.Impulse);
-        Debug.Log("bang bang bang");
+       // Debug.Log("bang bang bang");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
