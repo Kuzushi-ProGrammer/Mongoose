@@ -8,9 +8,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    GameManager gameManager;
     InventoryUI inventoryUI;
     Rigidbody2D BulletRB;
     AudioSource audioSource;
+
+    public TMPro.TMP_Text healthText;
 
     [SerializeField] AudioClip pew;
     [SerializeField] AudioClip pewButLower;
@@ -27,6 +30,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject bigIronDropable;
     [SerializeField] GameObject SKSGameObject;
     [SerializeField] GameObject BigIronGameObject;
+    [SerializeField] GameObject gameManagerObject;
 
     public List<string> playerInventory = new();
     public List<string> keyInventory = new();
@@ -49,6 +53,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        gameManager = gameManagerObject.GetComponent<GameManager>();
         inventoryUI = uiObject.GetComponent<InventoryUI>();
         audioSource = gameObject.GetComponent<AudioSource>();
 
@@ -311,11 +316,11 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.layer == 3)
         {
             health--;
-            Debug.Log("Sus -1 Health ");
-            if (health == 0)
+            healthText.SetText(health.ToString());
+            if (health <= 0)
             {
+                gameManager.mongooseDie();
                 Destroy(gameObject);
-                Debug.Log("I have fallen and can't get up");
             }
             else
             {

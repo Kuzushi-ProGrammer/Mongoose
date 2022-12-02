@@ -13,21 +13,21 @@ public class GameManager : MonoBehaviour
     public GameObject enemySpawnPoint1;
     public GameObject enemySpawnPoint2;
     public GameObject enemySpawnPoint3;
+
+    PlayerController playerController;
+    AudioSource audioSource;
+    [SerializeField] AudioClip death;
+    [SerializeField] GameObject cameraObject;
+
     private void Awake()
     {
         DontDestroyOnLoad(this);
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void mongooseDie()
     {
-       
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        audioSource = cameraObject.GetComponent<AudioSource>();
+        audioSource.PlayOneShot(death);
     }
    
 }

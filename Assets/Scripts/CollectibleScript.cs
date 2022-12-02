@@ -22,6 +22,7 @@ public class CollectibleScript : MonoBehaviour
 
                 case "Health":
                     playerController.health++;
+                    playerController.healthText.SetText(playerController.healthText.ToString());
                     Destroy(gameObject);
                     break;
 
