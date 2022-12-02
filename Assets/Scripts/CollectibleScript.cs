@@ -22,6 +22,7 @@ public class CollectibleScript : MonoBehaviour
 
                 case "Health":
                     playerController.health++;
+                    Destroy(gameObject);
                     break;
 
                 case "Weapon":
