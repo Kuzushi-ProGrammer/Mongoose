@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
     float SKSammo = 30;
     float BIGIRONammo = 6;
-    float SKSspareAmmo = 69;
+    float SKSspareAmmo = 420;
     float BIGIRONspareAmmo = 5;
 
     public int health = 3;
