@@ -16,7 +16,6 @@ public class CollectibleScript : MonoBehaviour
             {
                 case "Key":
                     playerController.keyInventory.Add(gameObject.name);
-                    Debug.Log("added: " + gameObject.name);
                     Destroy(gameObject);
                     break;
 

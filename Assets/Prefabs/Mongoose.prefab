@@ -142,6 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a3d5195bf53d604bb3a46777a05adc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthText: {fileID: 0}
   pew: {fileID: 8300000, guid: 180a77168ab43e64ba597dd3c64b79bd, type: 3}
   pewButLower: {fileID: 8300000, guid: fbb451358c4bd2847988d08107630359, type: 3}
   hurt: {fileID: 8300000, guid: 5349e47c4c6633a408501105c0134c82, type: 3}
@@ -155,8 +156,11 @@ MonoBehaviour:
   bigIronDropable: {fileID: 0}
   SKSGameObject: {fileID: 406830562136338331}
   BigIronGameObject: {fileID: 259781167320993712}
+  gameManagerObject: {fileID: 0}
   playerInventory: []
+  keyInventory: []
   canPickupItems: 1
+  health: 3
 --- !u!82 &6276398362910745348
 AudioSource:
   m_ObjectHideFlags: 0

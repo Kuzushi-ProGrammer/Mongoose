@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            RemoveItemFromInventory(currentActiveSlot);
+            RemoveItemFromInventory(currentActiveSlot); //RemoveItemFromInventory(2);
         }
 
         if (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Space)) // shoot gun
@@ -123,25 +123,6 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            // Log each element one at a time
-            foreach (var item in keyInventory)
-            {
-                Debug.Log(item.ToString());
-            }
-
-            // Concatenate all items into a single string
-            // NOTE:  If the List is long, this would be more efficient with a
-            // StringBuilder
-            string result = "List contents: ";
-            foreach (var item in keyInventory)
-            {
-                result += item.ToString() + ", ";
-            }
-            Debug.Log(result);
-        }
     }
 
     #region [Player Inventory]
@@ -152,13 +133,11 @@ public class PlayerController : MonoBehaviour
             switch (playerInventory[n])
             {
                 case "SKS":
-                    Debug.Log("Holding SKS");
                     BigIronGameObject.SetActive(false);
                     SKSGameObject.SetActive(true);
                     break;
 
                 case "Big_Iron":
-                    Debug.Log("Holding Big Iron");
                     BigIronGameObject.SetActive(true);
                     SKSGameObject.SetActive(false);
                     break;
@@ -166,7 +145,6 @@ public class PlayerController : MonoBehaviour
         }
         else // 3 is null slot
         {
-            Debug.Log("Holding Nothing");
             BigIronGameObject.SetActive(false);
             SKSGameObject.SetActive(false);
         }
@@ -195,11 +173,8 @@ public class PlayerController : MonoBehaviour
 
     public void AddItemToInventory(string item)
     {
-        ListCheck("1st");
-
         if (playerInventory[0] == "none")
         {
-            Debug.Log("player inv 1 = none, adding item to slot 1");
             playerInventory.RemoveAt(0);
             playerInventory.Insert(0, item);
             inventoryUI.UIupdate(item, 0);
@@ -210,7 +185,6 @@ public class PlayerController : MonoBehaviour
         }
         else if (playerInventory[1] == "none")
         {
-            Debug.Log("player inv 2 = none, adding item to slot 2");
             playerInventory.RemoveAt(1);
             playerInventory.Insert(1, item);
             inventoryUI.UIupdate(item, 1);
@@ -219,8 +193,6 @@ public class PlayerController : MonoBehaviour
             inventoryUI.ChangeActiveSlot(2);
             ActivateHeldItem(1);
         }
-
-        ListCheck("2nd");
     }
 
     void RemoveItemFromInventory(int slot)
@@ -288,25 +260,6 @@ public class PlayerController : MonoBehaviour
         canPickupItems = false;
         yield return new WaitForSeconds(0.1f);
         canPickupItems = true;
-    }
-
-    void ListCheck(string n) // debug
-    {
-        // Log each element one at a time
-        foreach (var item in playerInventory)
-        {
-            Debug.Log(item.ToString());
-        }
-
-        // Concatenate all items into a single string
-        // NOTE:  If the List is long, this would be more efficient with a
-        // StringBuilder
-        string result = "List contents: ";
-        foreach (var item in playerInventory)
-        {
-            result += item.ToString() + ", ";
-        }
-        Debug.Log(n + " " + result);
     }
 
     #endregion

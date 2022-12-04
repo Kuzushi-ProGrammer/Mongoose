@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
-    PlayerController playerController;
-
     [SerializeField] GameObject playerObject;
     [SerializeField] GameObject slot1;
     [SerializeField] GameObject slot2;
@@ -23,11 +21,8 @@ public class InventoryUI : MonoBehaviour
 
     private void Awake()
     {
-        PlayerController playerController = playerObject.GetComponent<PlayerController>();
-
         image1 = slot1.GetComponent<Image>();
         image2 = slot2.GetComponent<Image>();
-
     }
     public void UIupdate(string item, int slot)
     {
