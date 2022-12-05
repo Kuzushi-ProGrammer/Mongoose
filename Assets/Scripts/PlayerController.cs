@@ -272,8 +272,8 @@ public class PlayerController : MonoBehaviour
             healthText.SetText(health.ToString());
             if (health <= 0)
             {
-                gameManager.mongooseDie();
                 Destroy(gameObject);
+                gameManager.mongooseDie();
             }
             else
             {
