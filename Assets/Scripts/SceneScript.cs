@@ -14,6 +14,11 @@ public class SceneScript : MonoBehaviour
         SceneManager.LoadScene(2);
     }
 
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
     public void ActivateSettingsMenu()
     {
         mainMenu.SetActive(false);

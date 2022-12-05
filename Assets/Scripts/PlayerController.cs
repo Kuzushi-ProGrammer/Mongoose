@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     AudioSource audioSource;
 
     public TMPro.TMP_Text healthText;
+    public TMPro.TMP_Text bulletText;
 
     [SerializeField] AudioClip pew;
     [SerializeField] AudioClip pewButLower;
