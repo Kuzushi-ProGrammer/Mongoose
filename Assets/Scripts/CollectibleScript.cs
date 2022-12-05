@@ -5,6 +5,7 @@ using UnityEngine;
 public class CollectibleScript : MonoBehaviour
 {
     PlayerController playerController;
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -21,7 +22,7 @@ public class CollectibleScript : MonoBehaviour
 
                 case "Health":
                     playerController.health++;
-                    playerController.healthText.SetText(playerController.healthText.ToString());
+                    playerController.healthText.SetText(playerController.health.ToString());
                     Destroy(gameObject);
                     break;
 

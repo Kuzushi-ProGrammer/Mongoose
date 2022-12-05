@@ -4,18 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject playerPrefab;
-    GameObject newPlayer;
-    public GameObject playerSpawnPoint;
-    int allotedMongeese = 1;
-    public GameObject enemyPrefab;
-    GameObject newEnemy;
-    public GameObject enemySpawnPoint1;
-    public GameObject enemySpawnPoint2;
-    public GameObject enemySpawnPoint3;
-
-    PlayerController playerController;
     AudioSource audioSource;
+
     [SerializeField] AudioClip death;
     [SerializeField] GameObject cameraObject;
 
@@ -26,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     public void mongooseDie()
     {
-        audioSource = cameraObject.GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         audioSource.PlayOneShot(death);
     }
    

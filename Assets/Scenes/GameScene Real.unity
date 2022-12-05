@@ -41618,12 +41618,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e75f0bfd8ee11e94383541bc20991bc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 80026215646498456, guid: e22e5b311ab8eaa42be5a33b5a5c18b4, type: 3}
-  playerSpawnPoint: {fileID: 4508490112428076084, guid: b7ee5a24bead69e409740e86172594ab, type: 3}
-  enemyPrefab: {fileID: 8579071286194776271, guid: cc748914b0c547c4ca64eff92c23ec5f, type: 3}
-  enemySpawnPoint1: {fileID: 0}
-  enemySpawnPoint2: {fileID: 0}
-  enemySpawnPoint3: {fileID: 0}
   death: {fileID: 8300000, guid: c1ac8a2f77357b54b841c8ac116ae603, type: 3}
   cameraObject: {fileID: 434287545}
 --- !u!4 &1468855983
