@@ -118,7 +118,7 @@ public class EnemyController : MonoBehaviour
         }
         IEnumerator changeDirectionCoolDownTimer()
         {
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(0.1f);
             changeDirectionCoolDown = false;
            
         }

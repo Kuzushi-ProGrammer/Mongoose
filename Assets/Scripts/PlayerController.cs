@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
 
     public TMPro.TMP_Text healthText;
     public TMPro.TMP_Text bulletText;
+    public TMPro.TMP_Text bigIronBulletText;
 
     [SerializeField] AudioClip pew;
     [SerializeField] AudioClip pewButLower;
@@ -296,6 +297,7 @@ public class PlayerController : MonoBehaviour
                 BulletRB = newbullet.GetComponent<Rigidbody2D>();
                 BulletRB.AddForce(bulletSpawnPoint.right * bulletSpeed, ForceMode2D.Impulse);
                 SKSammo--;
+                bulletText.SetText(SKSammo.ToString());
                 if (SKSammo <= 0)
                 {
                     gunHasAmmo = false;
@@ -316,6 +318,7 @@ public class PlayerController : MonoBehaviour
                 BulletRB = newbullet.GetComponent<Rigidbody2D>();
                 BulletRB.AddForce(bulletSpawnPoint.right * bulletSpeed, ForceMode2D.Impulse);
                 BIGIRONammo --;
+                bigIronBulletText.SetText(BIGIRONammo.ToString());
                 if (BIGIRONammo <= 0)
                 {
                     bigIronHasAmmo = false;
@@ -344,6 +347,7 @@ public class PlayerController : MonoBehaviour
                 SKSspareAmmo--;
                 gunHasAmmo = true;
                 canshoot = true;
+                bulletText.SetText(SKSammo.ToString());
                 break;
 
             case "Big_Iron":
@@ -351,6 +355,7 @@ public class PlayerController : MonoBehaviour
                 BIGIRONspareAmmo--;
                 bigIronHasAmmo = true;
                 canShootBigIron = true;
+                bigIronBulletText.SetText(BIGIRONammo.ToString());
                 break;
         }
     }
